@@ -11,9 +11,15 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { AuthService } from './auth/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
-const routes: Route[] = [
+const routes: Route[] = [  {
+    path: '',
+    component: HomeComponent,
+    canActivate:[AuthGuard]
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -21,14 +27,16 @@ const routes: Route[] = [
   {
     path: 'signup',
     component: SignupComponent,
-  },
+  }
+
 ]
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

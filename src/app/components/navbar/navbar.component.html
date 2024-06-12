@@ -1,27 +1,77 @@
 <div class="container-fluid px-0">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="#" style="color: #122ca9;">Navbar</a>
-      </div>
+    <nav class="navbar navbar-expand-lg p-0">
+        <div class="container d-flex justify-content-end align-items-center">
+            <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/login']"
+                routerLinkActive="active">Login</a>
+            <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/signup']"
+                routerLinkActive="active">Registrati</a>
+
+            <div *ngIf="user" class="dropdown" style="height: 45px; width: 45px;">
+                <a data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="material-symbols-outlined" style="font-size: 43px;">
+                        account_circle
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Profilo</a></li>
+                    <li><a class="dropdown-item text-danger" *ngIf="user" (click)="logout()">ESCI</a></li>
+                </ul>
+
+            </div>
+
+
+        </div>
     </nav>
-  </div>
+</div>
 
 <div class="sidebar">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link active text-light" href="#">Home</a>
+    <ul class="nav flex-column justify-content-around align-items-center">
+        <li *ngIf="user" class="nav-item">
+            <a class="nav-link active text-light" [routerLink]="['/']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" title="Home"><span class="material-symbols-outlined" 
+                    style="font-size: 32px;">
+                    home
+                </span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" href="#">Link</a>
+        <li *ngIf="user" class="nav-item">
+            <a class="nav-link text-light" href="#" title="Conti"><span class="material-symbols-outlined" style="font-size: 32px;">
+                    wallet
+                </span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" href="#">Another link</a>
+        <li *ngIf="user" class="nav-item">
+            <a class="nav-link text-light" href="#" title="Statistiche"><span class="material-symbols-outlined" style="font-size: 32px;">
+                    equalizer
+                </span></a>
+        </li>
+        <li *ngIf="user" class="nav-item">
+            <a class="nav-link text-light" href="#" title="Account"><span class="material-symbols-outlined" style="font-size: 32px;">
+                    manage_accounts
+                </span></a>
+        </li>
+        <li *ngIf="user" class="nav-item">
+            <a class="nav-link text-light" href="#" title="Supporto"><span class="material-symbols-outlined" style="font-size: 32px;">
+                    support_agent
+                </span></a>
         </li>
     </ul>
 </div>
 
 <div class="container-fluid bottom-bar text-light">
-    <a class="nav-link " href="#">Home</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Another link</a>
+
+    <a *ngIf="user" class="nav-link " [routerLink]="['/']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"><span class="material-symbols-outlined">
+            home
+        </span></a>
+    <a *ngIf="user" class="nav-link" href="#"><span class="material-symbols-outlined">
+            wallet
+        </span></a>
+    <a *ngIf="user" class="nav-link text-light" href="#"><span class="material-symbols-outlined" style="font-size: 32px;">
+            equalizer
+        </span></a>
+    <a *ngIf="user" class="nav-link" href="#"><span class="material-symbols-outlined">
+            manage_accounts
+        </span></a>
+    <a *ngIf="user" class="nav-link text-light" href="#"><span class="material-symbols-outlined">
+            support_agent
+        </span></a>
 </div>
