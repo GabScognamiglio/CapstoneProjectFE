@@ -4,7 +4,8 @@ import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { WalletsComponent } from './components/wallets/wallets.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { SupportComponent } from './components/support/support.component';
+import { NewTicketComponent } from './components/new-ticket/new-ticket.component';
 
 
 const routes: Route[] = [ 
@@ -60,6 +62,11 @@ const routes: Route[] = [
     path: 'support',
     component: SupportComponent,
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'new-ticket',
+    component: NewTicketComponent,
+    canActivate:[AuthGuard]
   }
 
 
@@ -70,7 +77,9 @@ const routes: Route[] = [
     LoginComponent,
     SignupComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    SupportComponent,
+    NewTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +92,8 @@ const routes: Route[] = [
       positionClass: 'toast-top-center',
       preventDuplicates: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

@@ -3,15 +3,28 @@
 body{
     margin-left: 80px;
     background-color: #F5F8FB;
+    color: 	#1F2C73 !important;
     font-family: "Inter", sans-serif;
+    font-weight: 400 !important;
 }
 
-#authBtn{
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
+// a, .dropdown-item {
+//     font-weight: 600;
+// }
+
+#authBtn,
+.bottone{
     background-color: #122ca9;
     color: white;
 }
 
-#loginBtn:hover{
+#authBtn:hover,
+.bottone:hover{
+    color: white;
     background-color: #1391c1;
 }
 

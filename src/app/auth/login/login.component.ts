@@ -13,26 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent {
   constructor(private authSrv: AuthService, private router: Router, private toastr: ToastrService) { }
 
-  // login(form:NgForm){
-  //   try {
-  //     this.authSrv.login(form.value).subscribe();
-  //       this.toastr.success('Login completato!');
-  //       setTimeout(() => {
-  //         this.router.navigate(['/home']);
-  //       }, 2000);
-  //   } catch (error) {
-  //     console.error(error)
-  //     return
-  //   }
-  // }
-
   login(form: NgForm) {
     this.authSrv.login(form.value).subscribe({
       next: () => {
         this.toastr.success('Login completato!');this.router.navigate(['/home']);
-        setTimeout(() => {
-          
-        }, 400);
       },
       error: (error) => {
         console.error(error);
