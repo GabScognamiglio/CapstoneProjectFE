@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,10 +15,21 @@ import { AuthService } from './auth/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './auth/auth.guard';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { WalletsComponent } from './components/wallets/wallets.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { SupportComponent } from './components/support/support.component';
 
 
-const routes: Route[] = [  {
+const routes: Route[] = [ 
+
+  {
     path: '',
+    component: LandingPageComponent,
+  },
+  {
+    path: 'home',
     component: HomeComponent,
     canActivate:[AuthGuard]
   },
@@ -27,7 +40,28 @@ const routes: Route[] = [  {
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    path: 'wallets',
+    component: WalletsComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'stats',
+    component: StatsComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'account-settings',
+    component: AccountSettingsComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'support',
+    component: SupportComponent,
+    canActivate:[AuthGuard]
   }
+
 
 ]
 @NgModule({
@@ -44,6 +78,12 @@ const routes: Route[] = [  {
     HttpClientModule, 
     FormsModule, 
     RouterModule.forRoot(routes),
+    ToastrModule.forRoot({
+      timeOut: 1800, 
+      positionClass: 'toast-top-center',
+      preventDuplicates: true
+    }),
+    BrowserAnimationsModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

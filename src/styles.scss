@@ -6,6 +6,36 @@ body{
     font-family: "Inter", sans-serif;
 }
 
+#authBtn{
+    background-color: #122ca9;
+    color: white;
+}
+
+#loginBtn:hover{
+    background-color: #1391c1;
+}
+
+.toast-top-center{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.toast-success {
+    background-color: #51A351 !important;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .toast-error {
+    background-color: #BD362F !important;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+
+  }
+
 @media (max-width: 768px) {
     body{
         margin: 0px;
