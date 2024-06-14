@@ -16,6 +16,14 @@ h1, h2, h3, h4 {
 //     font-weight: 600;
 // }
 
+#logoName{
+    color: #122ca9;
+}
+
+.testoBluScuro{
+    color: #1F2C73;
+}
+
 #authBtn,
 .bottone{
     background-color: #122ca9;
@@ -28,25 +36,28 @@ h1, h2, h3, h4 {
     background-color: #1391c1;
 }
 
-.toast-top-center{
+.toast-conferma{
+    max-width: 420px;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 30px;
+    font-weight: 600;
 }
 
 .toast-success {
-    background-color: #51A351 !important;
+    background-color: #122ca9 !important;
     color: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
+    font-size: large;
   }
   
   .toast-error {
-    background-color: #BD362F !important;
+    background-color: #6b1b17 !important;
     color: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-
+    font-size: large;
   }
 
 @media (max-width: 768px) {

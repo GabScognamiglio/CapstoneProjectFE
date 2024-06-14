@@ -1,10 +1,11 @@
-<div class="container bg-white rounded-2 p-4 mb-5">
+<div class="container bg-white rounded-2 p-4 mb-5 shadow">
     <div class="d-flex justify-content-between align-items-center mb-5">
         <h4 class="mb-0">Dettagli utente</h4>
         <div class="d-flex align-items-center justify-content-center">
             Modifica
-            <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center" style="width: 46px; height: 46px;"
-                [routerLink]="['/account-settings/edit-profile']" routerLinkActive="router-link-active">
+            <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center"
+                style="width: 46px; height: 46px;" [routerLink]="['/account-settings/edit-profile']"
+                routerLinkActive="router-link-active">
                 <span class="material-symbols-outlined">
                     edit
                 </span>
@@ -16,7 +17,7 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <h5 class="my-3">{{user?.user?.firstName}}</h5>
+                        <h5 class="my-3 testoBluScuro">{{user?.user?.firstName}}</h5>
                         <p class="text-muted mb-1">{{user?.user?.email}}</p>
                         <p class="text-muted mb-4">Numero di conti: {{user?.user?.accounts?.length}}</p>
                     </div>
@@ -27,7 +28,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">ID utente</p>
+                                <p class="mb-0 testoBluScuro">ID utente</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">#{{user?.user?.id}}</p>
@@ -36,7 +37,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Nome</p>
+                                <p class="mb-0 testoBluScuro">Nome</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{user?.user?.firstName}}</p>
@@ -45,7 +46,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Cognome</p>
+                                <p class="mb-0 testoBluScuro">Cognome</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{user?.user?.lastName}}</p>
@@ -54,7 +55,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
+                                <p class="mb-0 testoBluScuro">Email</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{user?.user?.email}}</p>
@@ -63,7 +64,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Telefono</p>
+                                <p class="mb-0 testoBluScuro">Telefono</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{user?.user?.phoneNumber}}</p>
@@ -72,7 +73,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Data di nascita</p>
+                                <p class="mb-0 testoBluScuro">Data di nascita</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{user?.user?.dateOfBirth}}</p>
@@ -85,3 +86,76 @@
         </div>
     </div>
 </div>
+
+
+<div class="container shadow bg-white rounded-2 p-4 mb-5" style="margin-top: 80px;">
+    <div class="d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Conti di {{user?.user?.firstName}}</h4>
+    </div>
+</div>
+
+<!-- <div class="container" style="margin-bottom: 100px;">
+    <div class="row">
+        <div class="col-12 col-md-6 col-xl-4 mb-4" *ngFor="let account of accounts">
+            <div class="shadow bg-white rounded-2 p-4">
+                <div class="d-flex flex-column justify-content-between align-items-center">
+                    <h5 class="mb-0">{{ account?.name }}</h5>
+                    <p> {{ account?.description }}</p>
+                </div>
+                 Contenuto del singolo conto 
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container" style="margin-bottom: 100px;">
+    <div class="row">
+      <div class="col-12 col-md-6 col-xl-4 mb-4" *ngFor="let account of accounts">
+        <div class="card shadow border-0" style="height: 270px;">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="card-title testoBluScuro mb-0"> {{ account?.name }}</h5>
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Azioni
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item text-secondary">Modifica</a></li>
+                  <li><a class="dropdown-item text-danger" >Elimina</a></li>
+                </ul>
+              </div>
+            </div>
+            <p class="testoBluScuro"> {{ account?.description }} </p>
+            <p class="testoBluScuro">ID: #{{ account?.id }} </p>
+            <p class="text-body-tertiary">Creato il: {{account.creationDate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Bottone per aprire la modale -->
+<!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
+    Elimina Account
+  </button> -->
+  
+  <!-- Modale -->
+  <!-- <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content full-width-modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel">Conferma Eliminazione</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Sei sicuro di voler eliminare questo account? Questa azione non può essere annullata.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-danger">Elimina</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  

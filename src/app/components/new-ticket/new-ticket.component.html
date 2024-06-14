@@ -4,7 +4,7 @@
         <p class="text-body-tertiary">Descrivi il tuo problema, uno dei nostri amministratori ti risponderà al più presto.</p>
     </div>
 
-    <div class="container bg-white rounded-2 p-4 mb-5">
+    <div class="container bg-white rounded-2 p-4 mb-5 shadow">
         <h4 class="text-center">Compila il form</h4>
         <form #newTicketForm="ngForm" (ngSubmit)="createTicket(newTicketForm)">
             <input type="text" class="form-control my-2" id="object" name="object" placeholder="Titolo del ticket" required ngModel>

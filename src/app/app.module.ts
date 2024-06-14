@@ -103,8 +103,8 @@ const routes: Route[] = [
     FormsModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot({
-      timeOut: 1800,
-      positionClass: 'toast-top-center',
+      timeOut: 2300,
+      positionClass: 'toast-conferma',
       preventDuplicates: true
     }),
     BrowserAnimationsModule,
