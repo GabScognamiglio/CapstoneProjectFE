@@ -1,43 +1,69 @@
 <div class="container mt-5">
     <div class="mb-5">
         <h3>Supporto</h3>
-        <p class="text-body-tertiary">Richiedi il supporto dei nostri admin</p>
+        <p class="text-body-tertiary">Richiedi il supporto dei nostri amministratori.</p>
     </div>
 
     <div class="container bg-white rounded-2 p-4 mb-5">
-        <div class="d-flex justify-content-between mb-5">
-            <h4>I tuoi Tickets</h4>
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h4 class="mb-0">I tuoi Tickets</h4>
             <div class="d-flex align-items-center justify-content-center">
-                Nuovo 
-                <button class="btn btn-success rounded-circle ms-2" [routerLink]="['/new-ticket']">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                      </svg>
+                Nuovo
+                <button class="btn btn-success rounded-circle ms-2" [routerLink]="['/new-ticket']" style="width: 46px; height: 46px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor"
+                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                    </svg>
                 </button>
             </div>
         </div>
-        
+
         <div *ngIf="tickets.length>0">
             <div class="list-group p-2">
                 <div class="list-group-item" aria-current="true" *ngFor="let ticket of tickets">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-3">{{ticket.object}}</h5>
-                        <small>{{ticket.date}}</small>
+                        <span>
+                            <small>{{ticket.date}}</small>&nbsp;
+                            <button type="button" class="btn-close ms-2" aria-label="Close" data-bs-toggle="modal"
+                                [attr.data-bs-target]="'#exampleModal'+ticket.id+'A'+ticket.id"></button>
+                        </span>
+                    </div>
+                    <div class="modal fade" id="exampleModal{{ticket.id}}A{{ticket.id}}"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina Ticket</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>ID ticket: {{ticket.id}}</p>
+                                    <strong>Sei sicuro di voler eliminare questo ticket di assistenza?</strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" (click)="deleteTicket(ticket.id)" data-bs-dismiss="modal">Elimina</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Annulla</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <p class="mb-1">{{ticket.description}}</p>
                     <small class="text-body-tertiary">STATO: <span [ngClass]="{
                         'text-danger': ticket.status == 'CLOSED',
                         'text-success': ticket.status == 'OPEN',
                         'text-warning': ticket.status=='SUSPENDED'
-                      }" >{{ticket.status}}</span></small>
+                      }">{{ticket.status}}</span></small>
                     <div class="d-flex justify-content-end mt-2">
-                        <!-- Utilizzo mt-2 per aggiungere spazio sopra al bottone -->
                         <button [disabled]="ticket.adminAnswer==null" class="btn btn-sm bottone" data-bs-toggle="modal"
-                        [attr.data-bs-target]="'#exampleModal'+ticket.id">Vedi risposta</button>
+                            [attr.data-bs-target]="'#exampleModal'+ticket.id">Vedi risposta</button>
                     </div>
 
-                    <div class="modal fade" id="exampleModal{{ticket.id}}"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal{{ticket.id}}" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -49,8 +75,6 @@
                                     <h4>ID ticket: {{ticket.id}}</h4>
                                     {{ticket.adminAnswer}}
                                 </div>
-                           
-
                             </div>
                         </div>
                     </div>

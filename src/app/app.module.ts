@@ -4,7 +4,7 @@ import { Route, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,9 +22,11 @@ import { StatsComponent } from './components/stats/stats.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { SupportComponent } from './components/support/support.component';
 import { NewTicketComponent } from './components/new-ticket/new-ticket.component';
+import { UserDetailsComponent } from './components/account-settings/user-details/user-details.component';
+import { EditProfileComponent } from './components/account-settings/edit-profile/edit-profile.component';
 
 
-const routes: Route[] = [ 
+const routes: Route[] = [
 
   {
     path: '',
@@ -33,7 +35,7 @@ const routes: Route[] = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -46,27 +48,37 @@ const routes: Route[] = [
   {
     path: 'wallets',
     component: WalletsComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'stats',
     component: StatsComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'account-settings',
     component: AccountSettingsComponent,
-    canActivate:[AuthGuard]
+    children: [
+      {
+        path: 'details',
+        component: UserDetailsComponent
+      },
+      {
+        path: 'edit-profile',
+        component: EditProfileComponent
+      }
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: 'support',
     component: SupportComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'new-ticket',
     component: NewTicketComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   }
 
 
@@ -79,28 +91,31 @@ const routes: Route[] = [
     NavbarComponent,
     HomeComponent,
     SupportComponent,
-    NewTicketComponent
+    NewTicketComponent,
+    AccountSettingsComponent,
+    UserDetailsComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, 
-    FormsModule, 
+    HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot({
-      timeOut: 1800, 
+      timeOut: 1800,
       positionClass: 'toast-top-center',
       preventDuplicates: true
     }),
     BrowserAnimationsModule,
     CommonModule
   ],
-  providers: [ {
+  providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
   },
-  AuthService],
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

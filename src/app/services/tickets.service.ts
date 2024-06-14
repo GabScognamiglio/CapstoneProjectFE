@@ -21,4 +21,9 @@ export class TicketsService {
   createNewTicket(ticket: any): Observable<any>{
     return this.http.post<Ticket>(this.ticketsUrl, ticket, { responseType: 'text' as 'json' })
   }
+
+
+  deleteTicket(id:number){
+    return this.http.delete(`${this.ticketsUrl}/${id}`, { responseType: 'text' as 'json' })
+  }
 }

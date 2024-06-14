@@ -1,0 +1,87 @@
+<div class="container bg-white rounded-2 p-4 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h4 class="mb-0">Dettagli utente</h4>
+        <div class="d-flex align-items-center justify-content-center">
+            Modifica
+            <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center" style="width: 46px; height: 46px;"
+                [routerLink]="['/account-settings/edit-profile']" routerLinkActive="router-link-active">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="my-3">{{user?.user?.firstName}}</h5>
+                        <p class="text-muted mb-1">{{user?.user?.email}}</p>
+                        <p class="text-muted mb-4">Numero di conti: {{user?.user?.accounts?.length}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">ID utente</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">#{{user?.user?.id}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Nome</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user?.user?.firstName}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Cognome</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user?.user?.lastName}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user?.user?.email}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Telefono</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user?.user?.phoneNumber}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Data di nascita</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{user?.user?.dateOfBirth}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
