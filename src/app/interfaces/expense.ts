@@ -1,5 +1,4 @@
 export interface Expense {
-        id: number,
         accountId: number,
         amount: number,
         tag: string,

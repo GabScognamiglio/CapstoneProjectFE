@@ -26,11 +26,41 @@ export class HomeComponent implements OnInit {
         this.accountSrv.getAccountsByUserId(user.user.id).subscribe(
           (data) => {
             this.accounts = data;
-            console.log(this.accounts);
           }
         );
       }
     });
+    // prove
+    console.log("***ARRIVA TUTTOOOO***")
+    this.accountSrv.getAccountTotalBalance(4).subscribe((data) =>
+      {console.log("Totale")
+      console.log(data)}
+    )
+    
+    this.accountSrv.getAccountBalanceLast12Months(4).subscribe((data) =>
+      {console.log("Annuale")
+      console.log(data)}
+    )
+    
+    this.accountSrv.getAccountBalanceLastMonth(4).subscribe((data) =>
+     { console.log("Mensile")
+      console.log(data)}
+    )
+    
+    this.accountSrv.getAccountBalanceLastWeek(4).subscribe((data) =>
+      {console.log("Setimanale")
+      console.log(data)}
+    )
+
+    this.accountSrv.getAccountBalancesMonthlyLast12Months(4).subscribe((data) =>
+      console.log(data)
+    )
+
+    this.accountSrv.getAccountBalancesWeeklyLast4Weeks(4).subscribe((data) =>
+      console.log(data)
+    )
+
+
   }
 
 

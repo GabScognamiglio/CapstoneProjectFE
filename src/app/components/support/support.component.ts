@@ -28,7 +28,6 @@ export class SupportComponent {
           (data) => {
             this.tickets = data;
             this.tickets.sort((a, b) => b.id - a.id)
-            console.log(this.tickets);
           }
         );
       }

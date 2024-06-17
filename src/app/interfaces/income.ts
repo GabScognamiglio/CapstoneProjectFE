@@ -1,5 +1,4 @@
 export interface Income {
-    id: number,
         accountId: number,
         amount: number,
         tag: string,

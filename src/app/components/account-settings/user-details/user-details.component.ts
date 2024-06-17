@@ -28,7 +28,6 @@ export class UserDetailsComponent {
         this.accountSrv.getAccountsByUserId(user.user.id).subscribe(
           (data) => {
             this.accounts = data;
-            console.log(this.accounts);
           }
         );
       }
@@ -74,7 +73,7 @@ export class UserDetailsComponent {
       userId: this.user?.user.id as number
     }
 
-    this.accountSrv.modificaAccount(accountId, contoMod).subscribe({next: () => {
+    this.accountSrv.updateAccount(accountId, contoMod).subscribe({next: () => {
       
       this.toastr.success('Conto modificato con successo.');
       setTimeout(() => {

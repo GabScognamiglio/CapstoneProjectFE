@@ -18,7 +18,7 @@ export class AccountService {
       return this.http.get<Account[]>(`${this.accountsUrl}/user/${userId}`)
   }
 
-  modificaAccount(id:number|undefined, account:any): Observable<any>{
+  updateAccount(id:number|undefined, account:any): Observable<any>{
     return this.http.put<any>(`${this.accountsUrl}/${id}`, account)
   }
 
@@ -30,5 +30,33 @@ export class AccountService {
   createAccount(account:Account) {
     return this.http.post(this.accountsUrl, account, { responseType: 'text' as 'json' })
   }
+
+
+
+
+  getAccountTotalBalance(accountId:number){
+    return this.http.get(`${this.accountsUrl}/${accountId}/total-balance`)
+  }
+
+  getAccountBalanceLast12Months(accountId:number){
+    return this.http.get(`${this.accountsUrl}/${accountId}/last-year-balance`)
+  }
+
+  getAccountBalanceLastMonth(accountId:number){
+    return this.http.get(`${this.accountsUrl}/${accountId}/last-month-balance`)
+  }
+
+  getAccountBalanceLastWeek(accountId:number){
+    return this.http.get(`${this.accountsUrl}/${accountId}/last-week-balance`)
+  }
+
+  getAccountBalancesMonthlyLast12Months(accountId:number){
+    return this.http.get(`${this.accountsUrl}/${accountId}/monthly-year-balance`)
+  }
+
+  getAccountBalancesWeeklyLast4Weeks(accountId:number){
+    return this.http.get(`${this.accountsUrl}/${accountId}/weekly-month-balance`)
+  }
+
 
 }
