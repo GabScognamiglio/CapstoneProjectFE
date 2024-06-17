@@ -24,6 +24,7 @@ import { SupportComponent } from './components/support/support.component';
 import { NewTicketComponent } from './components/new-ticket/new-ticket.component';
 import { UserDetailsComponent } from './components/account-settings/user-details/user-details.component';
 import { EditProfileComponent } from './components/account-settings/edit-profile/edit-profile.component';
+import { NewAccountComponent } from './components/new-account/new-account.component';
 
 
 const routes: Route[] = [
@@ -56,7 +57,7 @@ const routes: Route[] = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'account-settings',
+    path: 'profile-settings',
     component: AccountSettingsComponent,
     children: [
       {
@@ -79,6 +80,11 @@ const routes: Route[] = [
     path: 'new-ticket',
     component: NewTicketComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'new-account',
+    component: NewAccountComponent,
+    canActivate: [AuthGuard]
   }
 
 
@@ -94,7 +100,8 @@ const routes: Route[] = [
     NewTicketComponent,
     AccountSettingsComponent,
     UserDetailsComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    NewAccountComponent
   ],
   imports: [
     BrowserModule,

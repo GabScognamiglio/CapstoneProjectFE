@@ -27,6 +27,8 @@ export class AccountService {
   }
 
 
-
+  createAccount(account:Account) {
+    return this.http.post(this.accountsUrl, account, { responseType: 'text' as 'json' })
+  }
 
 }

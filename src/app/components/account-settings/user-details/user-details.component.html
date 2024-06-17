@@ -1,147 +1,209 @@
 <div class="container bg-white rounded-2 p-4 mb-5 shadow">
-    <div class="d-flex justify-content-between align-items-center mb-5">
-        <h4 class="mb-0">Dettagli utente</h4>
-        <div class="d-flex align-items-center justify-content-center">
-            Modifica
-            <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center"
-                style="width: 46px; height: 46px;" [routerLink]="['/account-settings/edit-profile']"
-                routerLinkActive="router-link-active">
-                <span class="material-symbols-outlined">
-                    edit
-                </span>
-            </button>
-        </div>
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h4 class="mb-0">Dettagli utente</h4>
+    <div class="d-flex align-items-center justify-content-center">
+      Modifica
+      <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center"
+        style="width: 46px; height: 46px;" [routerLink]="['/profile-settings/edit-profile']"
+        routerLinkActive="router-link-active">
+        <span class="material-symbols-outlined">
+          edit
+        </span>
+      </button>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <h5 class="my-3 testoBluScuro">{{user?.user?.firstName}}</h5>
-                        <p class="text-muted mb-1">{{user?.user?.email}}</p>
-                        <p class="text-muted mb-4">Numero di conti: {{user?.user?.accounts?.length}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0 testoBluScuro">ID utente</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">#{{user?.user?.id}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0 testoBluScuro">Nome</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{user?.user?.firstName}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0 testoBluScuro">Cognome</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{user?.user?.lastName}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0 testoBluScuro">Email</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{user?.user?.email}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0 testoBluScuro">Telefono</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{user?.user?.phoneNumber}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0 testoBluScuro">Data di nascita</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{user?.user?.dateOfBirth}}</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="container shadow bg-white rounded-2 p-4 mb-5" style="margin-top: 80px;">
-    <div class="d-flex justify-content-between align-items-center">
-        <h4 class="mb-0">Conti di {{user?.user?.firstName}}</h4>
-    </div>
-</div>
-
-<!-- <div class="container" style="margin-bottom: 100px;">
+  </div>
+  <div class="container">
     <div class="row">
-        <div class="col-12 col-md-6 col-xl-4 mb-4" *ngFor="let account of accounts">
-            <div class="shadow bg-white rounded-2 p-4">
-                <div class="d-flex flex-column justify-content-between align-items-center">
-                    <h5 class="mb-0">{{ account?.name }}</h5>
-                    <p> {{ account?.description }}</p>
-                </div>
-                 Contenuto del singolo conto 
-            </div>
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <h5 class="my-3 testoBluScuro">{{user?.user?.firstName}}</h5>
+            <p class="text-muted mb-1">{{user?.user?.email}}</p>
+            <p class="text-muted mb-4">Numero di conti: {{user?.user?.accounts?.length}}</p>
+          </div>
         </div>
-    </div>
-</div> -->
-
-<div class="container" style="margin-bottom: 100px;">
-    <div class="row">
-      <div class="col-12 col-md-6 col-xl-4 mb-4" *ngFor="let account of accounts">
-        <div class="card shadow border-0" style="height: 270px;">
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
           <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h5 class="card-title testoBluScuro mb-0"> {{ account?.name }}</h5>
-              <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                  Azioni
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                  <li><a class="dropdown-item text-secondary">Modifica</a></li>
-                  <li><a class="dropdown-item text-danger" >Elimina</a></li>
-                </ul>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0 testoBluScuro">ID utente</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">#{{user?.user?.id}}</p>
               </div>
             </div>
-            <p class="testoBluScuro"> {{ account?.description }} </p>
-            <p class="testoBluScuro">ID: #{{ account?.id }} </p>
-            <p class="text-body-tertiary">Creato il: {{account.creationDate}}</p>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0 testoBluScuro">Nome</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user?.user?.firstName}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0 testoBluScuro">Cognome</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user?.user?.lastName}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0 testoBluScuro">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user?.user?.email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0 testoBluScuro">Telefono</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user?.user?.phoneNumber}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0 testoBluScuro">Data di nascita</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user?.user?.dateOfBirth}}</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+
+<div class="container shadow bg-white rounded-2 p-4 mb-5" style="margin-top: 80px;">
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Conti di {{user?.user?.firstName}}</h4>
+    <div class="d-flex align-items-center justify-content-center">
+      Aggiungi
+      <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center"
+        style="width: 46px; height: 46px;" [routerLink]="['/new-account']" routerLinkActive="router-link-active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-plus-lg"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!caricamento && accounts.length==0" class="container">
+  <p class="text-body-tertiary">Non hai ancora conti, aggiungine uno.</p>
+</div>
+
+<div class="container" style="margin-bottom: 100px;">
+  <div class="row">
+    <div class="col-12 col-md-6 col-xl-4 mb-4" *ngFor="let account of accounts">
+      <div class="card shadow border-0" style="height: 270px;">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="card-title testoBluScuro mb-0"> {{ account?.name }}</h5>
+            <div class="dropdown">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Azioni
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li><button class="dropdown-item text-secondary" data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#modaleModifica'+account.id">Modifica</button></li>
+                <li><button class="dropdown-item text-danger" data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#confirmModal'+account.id">Elimina</button></li>
+              </ul>
+              <!--Modale modifica-->
+              <div class="modal fade" id="modaleModifica{{account.id}}" tabindex="-2" role="dialog"
+                aria-labelledby="modaleModificaLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form #updateAccountForm="ngForm" (submit)="updateAccount(account.id, updateAccountForm)">
+                        <div class="row gy-2 overflow-hidden">
+                          <div class="col-12">
+                            <div class="form-floating mb-3">
+                              <input type="text" class="form-control" name="name" id="name" required [ngModel]="account.name">
+                              <label for="firstName" class="form-label">Nome del conto</label>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="form-floating mb-3">
+                              <textarea class="form-control" rows="8" name="description" id="description" required
+                              [ngModel]="account.description"></textarea>
+                              <label for="lastName" class="form-label">Descrizione</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                          <button class="btn w-50 bottone align-self-end"
+                            [disabled]="updateAccountForm.invalid">Modifica</button>
+                        </div>
+                      </form>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <!--Modale elimina-->
+              <div class="modal fade" id="confirmModal{{account.id}}" tabindex="-1" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                  <div class="modal-content full-width-modal">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="confirmModalLabel">Conferma Eliminazione</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Sei sicuro di voler eliminare l'account {{account.name}} (ID: {{account.id}})? Questa azione
+                        non può essere annullata.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteAccount(account.id)">Elimina</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="testoBluScuro"> {{ account?.description }} </p>
+          <p class="testoBluScuro">ID: #{{ account?.id }} </p>
+          <p class="text-body-tertiary">Creato il: {{account.creationDate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Bottone per aprire la modale -->
 <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
     Elimina Account
   </button> -->
-  
-  <!-- Modale -->
-  <!-- <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+
+<!-- Modale -->
+<!-- <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content full-width-modal">
         <div class="modal-header">
@@ -158,4 +220,3 @@
       </div>
     </div>
   </div> -->
-  

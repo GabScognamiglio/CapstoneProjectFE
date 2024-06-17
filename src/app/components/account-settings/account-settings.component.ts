@@ -10,17 +10,4 @@ import { AuthData } from 'src/app/interfaces/auth-data';
 })
 export class AccountSettingsComponent{
 
-  // user!: AuthData | null
-
-  // constructor(private authSrv: AuthService, private router:Router  ) { }
-
-  // ngOnInit(): void {
-  //   this.authSrv.user$.subscribe((user) => {
-  //     this.user = user
-  //     console.log(this.user?.user)
-  //   })
-
-
-  // }
-
 }
