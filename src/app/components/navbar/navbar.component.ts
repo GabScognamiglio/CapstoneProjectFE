@@ -20,4 +20,10 @@ export class NavbarComponent {
   logout() {
     this.authSrv.logout();
   }
+
+  isDarkMode = false; // Stato tema iniziale (chiaro per impostazione predefinita)
+
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
+  }
 }

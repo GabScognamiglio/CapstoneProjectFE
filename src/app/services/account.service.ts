@@ -14,8 +14,8 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  getAccountsByUserId(userId:number) {
-      return this.http.get<Account[]>(`${this.accountsUrl}/user/${userId}`)
+  getAccountByUserId(userId:number) {
+      return this.http.get(`${this.accountsUrl}/user/${userId}`)
   }
 
   updateAccount(id:number|undefined, account:any): Observable<any>{

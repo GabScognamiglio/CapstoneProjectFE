@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,9 @@ import { NewTicketComponent } from './components/new-ticket/new-ticket.component
 import { UserDetailsComponent } from './components/account-settings/user-details/user-details.component';
 import { EditProfileComponent } from './components/account-settings/edit-profile/edit-profile.component';
 import { NewAccountComponent } from './components/new-account/new-account.component';
+import { NewIncomeComponent } from './components/new-income/new-income.component';
+import { NewExpenseComponent } from './components/new-expense/new-expense.component';
+
 
 
 const routes: Route[] = [
@@ -36,6 +40,16 @@ const routes: Route[] = [
   {
     path: 'home',
     component: HomeComponent,
+    children: [
+      {
+        path: 'new-expense',
+        component: NewExpenseComponent
+      },
+      {
+        path: 'new-income',
+        component: NewIncomeComponent
+      }
+    ],
     canActivate: [AuthGuard]
   },
   {
@@ -101,7 +115,9 @@ const routes: Route[] = [
     AccountSettingsComponent,
     UserDetailsComponent,
     EditProfileComponent,
-    NewAccountComponent
+    NewAccountComponent,
+    NewIncomeComponent,
+    NewExpenseComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,7 +131,10 @@ const routes: Route[] = [
       preventDuplicates: true
     }),
     BrowserAnimationsModule,
-    CommonModule
+    CommonModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,42 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
+body {
     margin-left: 80px;
     background-color: #F5F8FB;
-    color: 	#1F2C73 !important;
+    color: #1F2C73 !important;
     font-family: "Inter", sans-serif;
     font-weight: 400 !important;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 600;
 }
 
-// a, .dropdown-item {
-//     font-weight: 600;
-// }
-
-#logoName{
+#logoName {
     color: #122ca9;
 }
 
-.testoBluScuro{
-    color: #1F2C73;
+.testoBluScuro {
+    color: #1F2C73 !important;
 }
 
 #authBtn,
-.bottone{
+.bottone {
     background-color: #122ca9;
     color: white;
 }
 
 #authBtn:hover,
-.bottone:hover{
+.bottone:hover {
     color: white;
     background-color: #1391c1;
 }
 
-.toast-conferma{
+.toast-conferma {
     max-width: 420px;
     position: fixed;
     bottom: 30px;
@@ -50,18 +49,74 @@ h1, h2, h3, h4 {
     padding: 25px;
     border-radius: 8px;
     font-size: large;
-  }
-  
-  .toast-error {
+}
+
+.toast-error {
     background-color: #6b1b17 !important;
     color: white;
     padding: 25px;
     border-radius: 8px;
     font-size: large;
+}
+
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    border: 3px solid;
+    border-color: #FFF #FFF transparent transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
   }
+  .loader::after,
+  .loader::before {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid;
+    border-color: transparent transparent #122ca9 #122ca9;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotationBack 0.5s linear infinite;
+    transform-origin: center center;
+  }
+  .loader::before {
+    width: 32px;
+    height: 32px;
+    border-color: #1F2C73 #1F2C73 transparent transparent;
+    animation: rotation 1.5s linear infinite;
+  }
+      
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+  @keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+      
 
 @media (max-width: 768px) {
-    body{
+    body {
         margin: 0px;
     }
 }

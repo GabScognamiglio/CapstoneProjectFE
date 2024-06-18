@@ -37,6 +37,10 @@ export class TransactionService {
     return this.http.delete(`${this.expenseUrl}/${id}`)
   }
 
+  createRecurringExpense(recurringExpense:any) {
+    return this.http.post(`${this.expenseUrl}/recurring`, recurringExpense)
+  }
+
 
   // INCOMES
 
@@ -59,4 +63,9 @@ export class TransactionService {
   deleteIncome(id: number) {
     return this.http.delete(`${this.incomeUrl}/${id}`)
   }
+
+  createRecurringIncome(recurringIncome:any) {
+    return this.http.post(`${this.incomeUrl}/recurring`, recurringIncome)
+  }
+
 }

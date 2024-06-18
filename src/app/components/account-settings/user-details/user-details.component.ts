@@ -15,7 +15,7 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class UserDetailsComponent {
   user!: AuthData | null
-  accounts: AccountDTO[] | any
+  account: any
   caricamento=true
 
   constructor(private authSrv: AuthService, private router: Router, private accountSrv: AccountService, private toastr: ToastrService) { }
@@ -25,9 +25,9 @@ export class UserDetailsComponent {
     this.authSrv.user$.subscribe((user) => {
       this.user = user;
       if (user) {
-        this.accountSrv.getAccountsByUserId(user.user.id).subscribe(
+        this.accountSrv.getAccountByUserId(user.user.id).subscribe(
           (data) => {
-            this.accounts = data;
+            this.account = data;
           }
         );
       }
@@ -39,29 +39,29 @@ export class UserDetailsComponent {
   
 
 
-  deleteAccount(id: number) {
-    const index = this.accounts.findIndex((account: AccountDTO) => account.id === id);
-    let removedAccount: AccountDTO | undefined;
-    if (index !== -1) {
-      removedAccount = this.accounts.splice(index, 1)[0];
-    }
-    this.accountSrv.deleteAccount(id).subscribe({
-      next: () => {
-        this.toastr.success('Conto eliminato con successo!');
-        window.location.reload()
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastr.error('Problemi nell\'eliminazione del conto, riprova.');
-        if (removedAccount) {
-          this.accounts.push(removedAccount);
-          if (this.user && this.user.user && this.user.user.accounts) {
-            this.user.user.accounts = [...this.accounts] as [];
-          }
-        }
-      }
-    });
-  }
+  // deleteAccount(id: number) {
+  //   const index = this.accounts.findIndex((account: AccountDTO) => account.id === id);
+  //   let removedAccount: AccountDTO | undefined;
+  //   if (index !== -1) {
+  //     removedAccount = this.accounts.splice(index, 1)[0];
+  //   }
+  //   this.accountSrv.deleteAccount(id).subscribe({
+  //     next: () => {
+  //       this.toastr.success('Conto eliminato con successo!');
+  //       window.location.reload()
+  //     },
+  //     error: (error) => {
+  //       console.error(error);
+  //       this.toastr.error('Problemi nell\'eliminazione del conto, riprova.');
+  //       if (removedAccount) {
+  //         this.accounts.push(removedAccount);
+  //         if (this.user && this.user.user && this.user.user.accounts) {
+  //           this.user.user.accounts = [...this.accounts] as [];
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
 
 
   updateAccount(accountId: number | undefined, form:NgForm){
