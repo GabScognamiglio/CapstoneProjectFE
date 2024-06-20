@@ -10,7 +10,7 @@ export interface AuthData {
         email: string,
         phoneNumber: string
         role: string,
-        accounts: [],
+        account: any,
         tickets: [],
         enabled: boolean,
         authorities: [

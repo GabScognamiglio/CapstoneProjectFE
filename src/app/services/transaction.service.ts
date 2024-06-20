@@ -21,12 +21,16 @@ export class TransactionService {
     return this.http.get<ExpenseDTO[]>(`${this.expenseUrl}/account/${accountId}`)
   }
 
+  getRecentExpensesByAccountId(accountId: number) {
+    return this.http.get<ExpenseDTO[]>(`${this.expenseUrl}/account/recent/${accountId}`)
+  }
+
   getExpenseById(id: number) {
     return this.http.get<ExpenseDTO>(`${this.expenseUrl}/${id}`)
   }
 
   saveExpense(expense: Expense) {
-    return this.http.post<ExpenseDTO[]>(this.expenseUrl, expense)
+    return this.http.post<ExpenseDTO[]>(this.expenseUrl, expense, { responseType: 'text' as 'json' })
   }
 
   updateExpense(id: number, expense: Expense) {
@@ -34,11 +38,11 @@ export class TransactionService {
   }
 
   deleteExpense(id: number) {
-    return this.http.delete(`${this.expenseUrl}/${id}`)
+    return this.http.delete(`${this.expenseUrl}/${id}`, { responseType: 'text' as 'json' })
   }
 
   createRecurringExpense(recurringExpense:any) {
-    return this.http.post(`${this.expenseUrl}/recurring`, recurringExpense)
+    return this.http.post(`${this.expenseUrl}/recurring`, recurringExpense, { responseType: 'text' as 'json' })
   }
 
 
@@ -48,12 +52,16 @@ export class TransactionService {
     return this.http.get<IncomeDTO[]>(`${this.incomeUrl}/account/${accountId}`)
   }
 
+  getRecentIncomesByAccountId(accountId: number) {
+    return this.http.get<IncomeDTO[]>(`${this.incomeUrl}/account/recent/${accountId}`)
+  }
+
   getIncomeById(id: number) {
     return this.http.get<IncomeDTO>(`${this.incomeUrl}/${id}`)
   }
 
   saveIncome(income: Income) {
-    return this.http.post<IncomeDTO[]>(this.incomeUrl, income)
+    return this.http.post<IncomeDTO[]>(this.incomeUrl, income, { responseType: 'text' as 'json' })
   }
 
   updateIncome(id: number, income: Income) {
@@ -61,11 +69,11 @@ export class TransactionService {
   }
 
   deleteIncome(id: number) {
-    return this.http.delete(`${this.incomeUrl}/${id}`)
+    return this.http.delete(`${this.incomeUrl}/${id}`, { responseType: 'text' as 'json' })
   }
 
   createRecurringIncome(recurringIncome:any) {
-    return this.http.post(`${this.incomeUrl}/recurring`, recurringIncome)
+    return this.http.post(`${this.incomeUrl}/recurring`, recurringIncome, { responseType: 'text' as 'json' })
   }
 
 }

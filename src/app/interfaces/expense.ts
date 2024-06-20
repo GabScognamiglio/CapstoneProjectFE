@@ -5,6 +5,6 @@ export interface Expense {
         comment: string,
         date: Date,
         category: string,
-        recurring: boolean
+        isRecurring: boolean
     
 }

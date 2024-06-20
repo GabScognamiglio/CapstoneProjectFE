@@ -38,14 +38,14 @@
                 </span></a>
         </li>
         <li *ngIf="user && user.user.role" class="nav-item">
-            <a class="nav-link text-light" [routerLink]="['/wallets']" routerLinkActive="active" title="Conti"><span
-                    class="material-symbols-outlined" style="font-size: 28px;">
-                    wallet
+            <a class="nav-link text-light" [routerLink]="['/saving-goals']" routerLinkActive="active"
+                title="Conti"><span class="material-symbols-outlined" style="font-size: 28px;">
+                    target
                 </span></a>
         </li>
         <li *ngIf="user && user.user.role" class="nav-item">
-            <a class="nav-link text-light" [routerLink]="['/stats']" routerLinkActive="active" title="Statistiche"><span
-                    class="material-symbols-outlined" style="font-size: 28px;">
+            <a class="nav-link text-light" [routerLink]="['/stats/expenses']" routerLinkActive="active"
+                title="Statistiche"><span class="material-symbols-outlined" style="font-size: 28px;">
                     equalizer
                 </span></a>
         </li>
@@ -71,11 +71,11 @@
             style="font-size: 28px;">
             home
         </span></a>
-    <a *ngIf="user && user.user.role" class="nav-link" [routerLink]="['/wallets']" routerLinkActive="active"><span
+    <a *ngIf="user && user.user.role" class="nav-link" [routerLink]="['/saving-goals']" routerLinkActive="active"><span
             class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
-            wallet
+            target
         </span></a>
-    <a *ngIf="user && user.user.role" class="nav-link text-light" [routerLink]="['/stats']"
+    <a *ngIf="user && user.user.role" class="nav-link text-light" [routerLink]="['/stats/expenses']"
         routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
             equalizer
         </span></a>

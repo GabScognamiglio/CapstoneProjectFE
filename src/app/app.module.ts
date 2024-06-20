@@ -18,7 +18,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { WalletsComponent } from './components/wallets/wallets.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { SupportComponent } from './components/support/support.component';
@@ -28,6 +27,11 @@ import { EditProfileComponent } from './components/account-settings/edit-profile
 import { NewAccountComponent } from './components/new-account/new-account.component';
 import { NewIncomeComponent } from './components/new-income/new-income.component';
 import { NewExpenseComponent } from './components/new-expense/new-expense.component';
+import { ExpensesComponent } from './components/stats/expenses/expenses.component';
+import { IncomesComponent } from './components/stats/incomes/incomes.component';
+import { ExpensesVsIncomesComponent } from './components/stats/expenses-vs-incomes/expenses-vs-incomes.component';
+import { SavingGoalsComponent } from './components/saving-goals/saving-goals.component';
+import { NewGoalComponent } from './components/saving-goals/new-goal/new-goal.component';
 
 
 
@@ -61,13 +65,22 @@ const routes: Route[] = [
     component: SignupComponent,
   },
   {
-    path: 'wallets',
-    component: WalletsComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'stats',
     component: StatsComponent,
+    children: [
+      {
+        path: 'expenses',
+        component: ExpensesComponent
+      },
+      {
+        path: 'incomes',
+        component: IncomesComponent
+      },
+      {
+        path: 'expenses-vs-incomes',
+        component: ExpensesVsIncomesComponent
+      }
+    ],
     canActivate: [AuthGuard]
   },
   {
@@ -99,6 +112,17 @@ const routes: Route[] = [
     path: 'new-account',
     component: NewAccountComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'saving-goals',
+    component: SavingGoalsComponent,
+    children: [
+      {
+        path: 'new-goal',
+        component: NewGoalComponent
+      }
+    ],
+    canActivate: [AuthGuard]
   }
 
 
@@ -118,6 +142,12 @@ const routes: Route[] = [
     NewAccountComponent,
     NewIncomeComponent,
     NewExpenseComponent,
+    StatsComponent,
+    ExpensesComponent,
+    IncomesComponent,
+    ExpensesVsIncomesComponent,
+    SavingGoalsComponent,
+    NewGoalComponent
   ],
   imports: [
     BrowserModule,

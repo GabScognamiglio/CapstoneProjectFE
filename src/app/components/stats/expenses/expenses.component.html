@@ -1,0 +1,55 @@
+<div class="container bg-white rounded-2 p-4 my-5 shadow">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h4 class="mb-0">Le tue spese</h4>
+        <!-- <div class="d-flex align-items-center justify-content-center">
+            Indietro
+            <button
+                class="btn btn-outline-secondary rounded-circle ms-2 d-flex justify-content-center align-items-center"
+                style="width: 46px; height: 46px;" [routerLink]="['/home']" routerLinkActive="router-link-active">
+                <span class="material-symbols-outlined">
+                    undo
+                </span>
+            </button>
+        </div> -->
+    </div>
+    <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+        <span class="loader"></span>
+    </div>
+    <div *ngIf="!caricamento" class="container">
+        <div>
+            <h2>Filtri</h2>
+            <div>
+                <h5>Categorie:</h5>
+                <span class="badge bg-primary" *ngFor="let category of uniqueCategories"
+                    (click)="setCategoryFilter(category)">
+                    {{ category }}
+                </span>
+                <span class="badge bg-secondary" (click)="setCategoryFilter('')">Tutti</span>
+            </div>
+            <label>
+                Data:
+                <input type="date" [(ngModel)]="filters.date" class="form-control">
+            </label>
+            <label>
+                Ammontare minimo:
+                <input type="number" [(ngModel)]="filters.minAmount" class="form-control">
+            </label>
+            <label>
+                Ammontare massimo:
+                <input type="number" [(ngModel)]="filters.maxAmount" class="form-control">
+            </label>
+        </div>
+
+        <div>
+            <h2>Spese</h2>
+            <ul>
+                <li *ngFor="let transaction of filteredTransactions">
+                    {{ transaction.date }} - {{ transaction.category }} - {{ transaction.amount }} - {{ transaction.tag
+                    }}
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</div>

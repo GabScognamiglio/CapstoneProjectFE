@@ -2,18 +2,108 @@
     <div class="d-flex justify-content-between align-items-center mb-5">
         <h4 class="mb-0">Nuovo movimento in uscita</h4>
         <div class="d-flex align-items-center justify-content-center">
-            Indietro
+            Chiudi
             <button
                 class="btn btn-outline-secondary rounded-circle ms-2 d-flex justify-content-center align-items-center"
-                style="width: 46px; height: 46px;" [routerLink]="['/home']"
-                routerLinkActive="router-link-active">
+                style="width: 46px; height: 46px;" [routerLink]="['/home']" routerLinkActive="router-link-active">
                 <span class="material-symbols-outlined">
-                    undo
+                    close
                 </span>
             </button>
         </div>
     </div>
-    <form #newExpense="ngForm">
-       
+    <form #newExpense="ngForm" (submit)="createExpense(newExpense)">
+        <div class="row gy-2 overflow-hidden">
+            <div class="col-12 col-lg-6">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="amount" id="amount" placeholder="Ammontare €"
+                        min="0" required ngModel>
+                    <label for="amount" class="form-label">Ammontare €</label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="tag" id="tag" placeholder="descrivilo con una parola"
+                        ngModel>
+                    <label for="tag" class="form-label">Tag</label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="comment" id="comment"
+                        placeholder="descrivilo con una parola" ngModel>
+                    <label for="comment" class="form-label">Commento</label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-floating mb-3">
+                    <select class="form-select" name="category" id="category" required ngModel>
+
+                        <option value="SPESA">Spesa</option>
+                        <option value="SALUTE">Salute</option>
+                        <option value="SVAGO">Svago</option>
+                        <option value="RISTORANTI">Ristoranti</option>
+                        <option value="ISTRUZIONE" selected>Istruzione</option>
+                        <option value="REGALI">Regali</option>
+                        <option value="FAMIGLIA">Famiglia</option>
+                        <option value="ATTIVITA-FISICA">Attività fisica</option>
+                        <option value="TRASPORTI">Trasporti</option>
+                        <option value="ABBONAMENTI" selected>Abbonamenti</option>
+                        <option value="AUTO">Auto</option>
+                        <option value="ALTRO" selected>Altro</option>
+                    </select>
+                    <label for="category" class="form-label">Categoria</label>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form-floating pt-3 d-flex justify-content-center align-items-center">
+                    <div class="form-check form-switch w-100">
+                        <label for="category" class="form-label">Ricorrente</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="isRecurring"
+                            name="isRecurring" [(ngModel)]="isRecurring" ngModel>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+
+            </div>
+            <div class="col-12 col-lg-6" *ngIf="!isRecurring">
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" name="date" id="date"
+                        placeholder="descrivilo con una parola" required ngModel>
+                    <label for="date" class="form-label">Data</label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6" *ngIf="isRecurring">
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" name="startDate" id="startDate"
+                        placeholder="descrivilo con una parola" required ngModel>
+                    <label for="startDate" class="form-label">Data inizio</label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6" *ngIf="isRecurring">
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" name="endDate" id="endDate"
+                        placeholder="descrivilo con una parola" required ngModel>
+                    <label for="endDate" class="form-label">Data fine</label>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6" *ngIf="isRecurring">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="intervalDays" id="intervalDays"
+                        placeholder="Ammontare €" min="0" required ngModel>
+                    <label for="intervalDays" class="form-label">Intervallo in giorni</label>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="d-grid my-3">
+                    <button class="btn btn-lg" type="submit" id="authBtn" [disabled]="!newExpense.valid">Salva
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </form>
 </div>

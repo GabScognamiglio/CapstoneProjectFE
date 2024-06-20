@@ -5,5 +5,5 @@ export interface Income {
         comment: string,
         date: Date,
         category: string,
-        recurring: boolean
+        isRecurring: boolean
 }

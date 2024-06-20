@@ -3,9 +3,12 @@ import { EChartsOption } from 'echarts';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Account } from 'src/app/interfaces/account';
 import { AuthData } from 'src/app/interfaces/auth-data';
+import { ExpenseDTO } from 'src/app/interfaces/expenseDTO';
+import { IncomeDTO } from 'src/app/interfaces/incomeDTO';
 import { Ticket } from 'src/app/interfaces/ticket';
 import { AccountService } from 'src/app/services/account.service';
 import { TicketsService } from 'src/app/services/tickets.service';
+import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +23,12 @@ export class HomeComponent implements OnInit {
   totalBalance: any = {}
   caricamento = true;
   chartOption!: EChartsOption
+  recentExp:ExpenseDTO[]=[]
+  recentInc:IncomeDTO[]=[]
 
-  constructor(private accountSrv: AccountService, private authSrv: AuthService) { }
+  constructor(private accountSrv: AccountService,
+    private authSrv: AuthService,
+    private transactionSrv: TransactionService) { }
 
   ngOnInit(): void {
     this.authSrv.user$.subscribe((user) => {
@@ -32,6 +39,15 @@ export class HomeComponent implements OnInit {
             this.account = data;
             // console.log(this.account);
             if (this.account) {
+              this.transactionSrv.getRecentExpensesByAccountId(this.account.id).subscribe((data)=>{
+                this.recentExp=data;
+                console.log(this.recentExp)
+              })
+
+              this.transactionSrv.getRecentIncomesByAccountId(this.account.id).subscribe((data)=>{
+                this.recentInc=data;
+                console.log(this.recentInc)
+              })
 
               this.accountSrv.getAccountTotalBalance(this.account.id).subscribe((data) => {
                 this.totalBalance = data;
@@ -48,13 +64,12 @@ export class HomeComponent implements OnInit {
                     type: 'value'
                   },
                   series: [{
-                    data: Object.values(this.monthlyYeasrBalance).map((item:any) => item.balance),
+                    data: Object.values(this.monthlyYeasrBalance).map((item: any) => item.balance),
                     type: 'line'
                   }]
                 };
               }
               )
-
             }
           }
         );
