@@ -1,55 +1,96 @@
-<div class="container bg-white rounded-2 p-4 my-5 shadow">
-    <div class="d-flex justify-content-between align-items-center mb-5">
-        <h4 class="mb-0">Le tue spese</h4>
-        <!-- <div class="d-flex align-items-center justify-content-center">
-            Indietro
-            <button
-                class="btn btn-outline-secondary rounded-circle ms-2 d-flex justify-content-center align-items-center"
-                style="width: 46px; height: 46px;" [routerLink]="['/home']" routerLinkActive="router-link-active">
-                <span class="material-symbols-outlined">
-                    undo
-                </span>
-            </button>
-        </div> -->
-    </div>
-    <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
-        <span class="loader"></span>
-    </div>
-    <div *ngIf="!caricamento" class="container">
-        <div>
-            <h2>Filtri</h2>
-            <div>
-                <h5>Categorie:</h5>
-                <span class="badge bg-primary" *ngFor="let category of uniqueCategories"
-                    (click)="setCategoryFilter(category)">
-                    {{ category }}
-                </span>
-                <span class="badge bg-secondary" (click)="setCategoryFilter('')">Tutti</span>
+<div class="container">
+    <div class="row">
+        
+        <div class="col-12 col-lg-4">
+            <div class="container bg-white rounded-2 p-4 my-5 shadow">
+                <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+                    <span class="loader"></span>
+                </div>
+                <div *ngIf="!caricamento" class="mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                        <h4 class="mb-0">Filtri</h4>
+                    </div>
+                    <div>
+                        <h5>Categorie:</h5>
+                        <span class="badge p-3 m-2" *ngFor="let category of uniqueCategories"
+                            [ngClass]="getCategoryClass(category)" (click)="setCategoryFilter(category)">
+                            {{ category }}
+                        </span>
+                        <span class="badge bg-secondary p-3 m-2" (click)="setCategoryFilter('')">Tutti</span>
+                    </div>
+                    <div class="row gy-2 overflow-hidden mt-4">
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" name="date" id="date" [(ngModel)]="filters.date">
+                                <label for="date" class="form-label">Data</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="ammontareMin" id="ammontareMin" [(ngModel)]="filters.minAmount">
+                                <label for="ammontareMin" class="form-label">Ammontare minimo</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="ammontaremax" id="ammontaremax" [(ngModel)]="filters.maxAmount">
+                                <label for="ammontaremax" class="form-label">Ammontare massimo</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div *ngIf="!caricamento" class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="mb-0">Percentuali per categoria</h4>
+                </div>
+                <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+                    <span class="loader"></span>
+                </div>
+                <div *ngIf="!caricamento">
+                    <div echarts [options]="options" class="chart"></div>
+                </div>
+    
             </div>
-            <label>
-                Data:
-                <input type="date" [(ngModel)]="filters.date" class="form-control">
-            </label>
-            <label>
-                Ammontare minimo:
-                <input type="number" [(ngModel)]="filters.minAmount" class="form-control">
-            </label>
-            <label>
-                Ammontare massimo:
-                <input type="number" [(ngModel)]="filters.maxAmount" class="form-control">
-            </label>
+            
         </div>
-
-        <div>
-            <h2>Spese</h2>
-            <ul>
-                <li *ngFor="let transaction of filteredTransactions">
-                    {{ transaction.date }} - {{ transaction.category }} - {{ transaction.amount }} - {{ transaction.tag
-                    }}
-                </li>
-            </ul>
+        <div class="col-12 col-lg-8">
+            <div class="container bg-white rounded-2 p-4 my-5 shadow">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="mb-0">Le tue spese</h4>
+                </div>
+                <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+                    <span class="loader"></span>
+                </div>
+                <div *ngIf="!caricamento" class="container">
+                    <div>
+                        <div class="container mt-4">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Data</th>
+                                        <th>Tag</th>
+                                        <th>Ammontare</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let transaction of filteredTransactions">
+                                        <td>
+                                            <div class="category-icon" [ngClass]="getCategoryClass(transaction.category)">
+                                            </div>
+                                            {{ transaction.category }}
+                                        </td>
+                                        <td>{{ transaction.date | date: 'dd.MM.yyyy' }}</td>
+                                        <td>{{ transaction.tag }}</td>
+                                        <td>{{ transaction.amount | decimalTwoDigits}}€</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
         </div>
-
-
     </div>
 </div>

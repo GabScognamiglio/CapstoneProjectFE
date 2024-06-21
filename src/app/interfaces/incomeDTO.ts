@@ -8,5 +8,5 @@ export interface IncomeDTO {
     comment: string,
     date: Date,
     category: string,
-    recurring: boolean
+    isRecurring: boolean
 }

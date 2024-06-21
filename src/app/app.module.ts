@@ -32,6 +32,7 @@ import { IncomesComponent } from './components/stats/incomes/incomes.component';
 import { ExpensesVsIncomesComponent } from './components/stats/expenses-vs-incomes/expenses-vs-incomes.component';
 import { SavingGoalsComponent } from './components/saving-goals/saving-goals.component';
 import { NewGoalComponent } from './components/saving-goals/new-goal/new-goal.component';
+import { DecimalTwoDigitsPipe } from './pipe/decimal-two-digits.pipe';
 
 
 
@@ -147,7 +148,8 @@ const routes: Route[] = [
     IncomesComponent,
     ExpensesVsIncomesComponent,
     SavingGoalsComponent,
-    NewGoalComponent
+    NewGoalComponent,
+    DecimalTwoDigitsPipe
   ],
   imports: [
     BrowserModule,

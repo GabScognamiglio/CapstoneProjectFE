@@ -113,6 +113,41 @@ h4 {
       transform: rotate(-360deg);
     }
   }
+
+  .badge,
+  .table-hover{
+    cursor: pointer;
+  }
+
+
+  .category-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 50%;
+  }
+  
+  // Stili per le spese
+  .category-spesa { background-color: #f8c291; }
+  .category-salute { background-color: #eb2f06; }
+  .category-svago { background-color: #6a89cc; }
+  .category-ristoranti { background-color: #4a69bd; }
+  .category-istruzione { background-color: #78e08f; }
+  .category-regali { background-color: #fa983a; }
+  .category-famiglia { background-color: #e58e26; }
+  .category-attivita-fisica { background-color: #38ada9; }
+  .category-trasporti { background-color: #b71540; }
+  .category-abbonamenti { background-color: #6a89cc; }
+  .category-auto { background-color: #0c2461; }
+  .category-obiettivi { background-color: #f6b93b; }
+  .category-altro { background-color: #60a3bc; }
+  
+  // Stili per le entrate
+  .category-stipendio { background-color: #78e08f; }
+  .category-regalo { background-color: #fa983a; }
+  .category-vincita { background-color: #38ada9; }
+  .category-interessi { background-color: #6a89cc; }
       
 
 @media (max-width: 768px) {

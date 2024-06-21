@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { EChartsOption } from 'echarts';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AuthData } from 'src/app/interfaces/auth-data';
@@ -12,8 +13,9 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class ExpensesComponent {
   user!: AuthData | null
-  expenses:any
-  caricamento=true;
+  expenses: any[] = []
+  caricamento = true;
+  options!: EChartsOption 
 
   constructor(private toastr: ToastrService, private router: Router, private transactionSrv: TransactionService, private authSrv: AuthService) { }
 
@@ -24,6 +26,7 @@ export class ExpensesComponent {
 
     this.transactionSrv.getExpensesByAccountId(this.user?.user.account.id).subscribe((data) => {
       this.expenses = data;
+      this.formatChartData();
     })
 
     setTimeout(() => {
@@ -39,7 +42,7 @@ export class ExpensesComponent {
   };
 
   get filteredTransactions() {
-    return this.expenses.filter((transaction:any) => {
+    return this.expenses.filter((transaction: any) => {
       const matchesCategory = this.filters.category ? transaction.category.includes(this.filters.category) : true;
       const matchesDate = this.filters.date ? transaction.date === this.filters.date : true;
       const matchesMinAmount = this.filters.minAmount !== null ? transaction.amount >= this.filters.minAmount : true;
@@ -53,6 +56,86 @@ export class ExpensesComponent {
   }
 
   get uniqueCategories() {
-    return [...new Set(this.expenses.map((transaction:any) => transaction.category))];
+    return [...new Set(this.expenses.map((transaction: any) => transaction.category))];
   }
+
+
+  getCategoryClass(category: any): string {
+    switch (category) {
+      case 'SPESA': return 'category-spesa';
+      case 'SALUTE': return 'category-salute';
+      case 'SVAGO': return 'category-svago';
+      case 'RISTORANTI': return 'category-ristoranti';
+      case 'ISTRUZIONE': return 'category-istruzione';
+      case 'REGALI': return 'category-regali';
+      case 'FAMIGLIA': return 'category-famiglia';
+      case 'ATTIVITA_FISICA': return 'category-attivita-fisica';
+      case 'TRASPORTI': return 'category-trasporti';
+      case 'ABBONAMENTI': return 'category-abbonamenti';
+      case 'AUTO': return 'category-auto';
+      case 'OBIETTIVI': return 'category-obiettivi';
+      case 'ALTRO': return 'category-altro';
+      case 'STIPENDIO': return 'category-stipendio';
+      case 'REGALO': return 'category-regalo';
+      case 'VINCITA': return 'category-vincita';
+      case 'INTERESSI': return 'category-interessi';
+      default: return 'category-altro'; // Default class
+    }
+  }
+
+
+  categoryColors: { [categoria: string]: string } = {
+    'SPESA': '#f8c291', 
+    'SALUTE': '#eb2f06',
+    'SVAGO': '#6a89cc',
+    'RISTORANTI': '#4a69bd',
+    'ISTRUZIONE': '#78e08f',
+    'REGALI': '#fa983a',
+    'FAMIGLIA': '#e58e26',
+    'ATTIVITA_FISICA': '#38ada9',
+    'TRASPORTI': '#b71540',
+    'ABBONAMENTI': '#6a89cc',
+    'AUTO': '#0c2461',
+    'OBIETTIVI': '#f6b93b',
+    'ALTRO': '#60a3bc'
+
+  };
+
+  formatChartData(): void {
+
+    this.options = {
+      labelLine: {
+        show: false,
+      },
+      label: {
+        formatter: "{b}",
+        show: false
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: ' {b} - {c}€ ({d}%)',
+      },
+      series: [{
+        name: 'Percentuali transazioni',
+        type: 'pie',
+        radius: ['50%', '70%'],
+        data: this.expenses?.reduce((data, item) => {
+          const existingCategory = data.find((c:any) => c.name === item.category);
+          if (existingCategory) {
+            existingCategory.value += item.amount;
+          } else {
+            data.push({
+              name: item.category,
+              value: item.amount,
+              itemStyle: {
+                color: this.categoryColors[item.category] || '#CCC' // Default color
+              }
+            });
+          }
+          return data;
+        }, [])
+      }]
+    };
+  }
+  
 }
