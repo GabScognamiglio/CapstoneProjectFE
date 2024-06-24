@@ -39,16 +39,13 @@ export class HomeComponent implements OnInit {
         this.accountSrv.getAccountByUserId(user.user.id).subscribe(
           (data) => {
             this.account = data;
-            // console.log(this.account);
             if (this.account) {
               this.transactionSrv.getRecentExpensesByAccountId(this.account.id).subscribe((data) => {
                 this.recentExp = data;
-                console.log(this.recentExp)
               })
 
               this.transactionSrv.getRecentIncomesByAccountId(this.account.id).subscribe((data) => {
                 this.recentInc = data;
-                console.log(this.recentInc)
               })
 
               this.accountSrv.getAccountTotalBalance(this.account.id).subscribe((data) => {
@@ -65,7 +62,7 @@ export class HomeComponent implements OnInit {
                   },
                   xAxis: {
                     type: 'category',
-                    data: Object.keys(this.monthlyYeasrBalance)
+                    data: Object.keys(this.monthlyYeasrBalance).map(item=>item.slice(0,3))
                   },
                   yAxis: {
                     type: 'value',
@@ -78,7 +75,7 @@ export class HomeComponent implements OnInit {
                     type: 'line',
                     smooth: true,
                     areaStyle: {
-                      color: '#3248c3' // Colore personalizzato per l'area
+                      color: '#3248c3'
                     }
                   }]
                 };
@@ -109,7 +106,7 @@ export class HomeComponent implements OnInit {
                     type: 'line',
                     smooth: true,
                     areaStyle: {
-                      color: '#3248c3' // Colore personalizzato per l'area
+                      color: '#3248c3'
                     }
                   }]
                 };
@@ -149,41 +146,3 @@ export class HomeComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-// if(this.account){
-//   console.log("***ARRIVA TUTTOOOO***")
-// this.accountSrv.getAccountTotalBalance(this.account.id).subscribe((data) =>
-//   {console.log("Totale")
-//   console.log(data)
-//     this.totalBalance=data;
-// }
-// )
-
-// this.accountSrv.getAccountBalanceLast12Months(this.account.id).subscribe((data) =>
-//   {console.log("Annuale")
-//   console.log(data)}
-// )
-
-// this.accountSrv.getAccountBalanceLastMonth(this.account.id).subscribe((data) =>
-//  { console.log("Mensile")
-//   console.log(data)}
-// )
-
-// this.accountSrv.getAccountBalanceLastWeek(this.account.id).subscribe((data) =>
-//   {console.log("Setimanale")
-//   console.log(data)}
-// )
-
-// this.accountSrv.getAccountBalancesMonthlyLast12Months(this.account.id).subscribe((data) =>{
-//   this.monthlyYeasrBalance=data
-// console.log(this.monthlyYeasrBalance)}
-// )
-
-// this.accountSrv.getAccountBalancesWeeklyLast4Weeks(this.account.id).subscribe((data) =>
-//   console.log(data)
-// )
-// }

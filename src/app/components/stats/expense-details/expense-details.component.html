@@ -1,0 +1,178 @@
+<div class="container bg-white rounded-2 p-4 my-5 shadow">
+
+    <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 50vh;">
+        <span class="loader"></span>
+    </div>
+
+    <div *ngIf="!caricamento" class="d-flex justify-content-between align-items-center mb-5">
+        <h4 class="mb-0">Dettagli Uscita</h4>
+        <div class="d-flex align-items-center justify-content-center">
+            Modifica
+            <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center"
+                style="width: 46px; height: 46px;" routerLinkActive="router-link-active" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#exampleModal'+expense.id">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </button>&nbsp;
+
+            Elimina
+            <button class="btn btn-outline-danger rounded-circle ms-2 d-flex justify-content-center align-items-center"
+                style="width: 46px; height: 46px;" data-bs-toggle="modal"
+                [attr.data-bs-target]="'#exampleModal'+expense.id+'A'+expense.id">
+                <span class="material-symbols-outlined">
+                    delete
+                </span>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="!caricamento" class="row">
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 testoBluScuro">ID spesa</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">#{{expense.id}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 testoBluScuro">Categoria</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">{{expense.category}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 testoBluScuro">Ammontare</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">{{expense.amount}}€</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 testoBluScuro">Tag</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">{{expense.tag}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 testoBluScuro">Commento</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">{{expense.comment}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 testoBluScuro">Data</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">{{expense.date}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modale Elimina-->
+    <div *ngIf="!caricamento" class="modal fade" id="exampleModal{{expense.id}}A{{expense.id}}" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content full-width-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina Uscita</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>ID Uscita: {{expense.id}}</p>
+                    <strong>Sei sicuro di voler eliminare questo movimento?</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteUscita(expense.id)">Elimina</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modale Modifica-->
+    <div *ngIf="!caricamento" class="modal fade" id="exampleModal{{expense.id}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content full-width-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifica Uscita</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form" class="form" #modUscita="ngForm" (submit)="modificaUscita(modUscita)">
+                        <div class="row gy-2 overflow-hidden">
+                            <div class="col-12 col-lg-6 d-none">
+                                <div class="form-floating mb-3">
+                                    <input type="number" class="form-control" name="accountId" id="accountId" required
+                                        [ngModel]="expense.account.id">
+                                    <label for="accountId" class="form-label">AccountId</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 d-none">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="category" id="category" required
+                                        [ngModel]="expense.category">
+                                    <label for="category" class="form-label">Categoria</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input type="number" class="form-control" name="amount" id="amount" required
+                                        [ngModel]="expense.amount">
+                                    <label for="amount" class="form-label">Ammontare</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="tag" id="tag" required
+                                        [ngModel]="expense.tag">
+                                    <label for="tag" class="form-label">Tag</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="comment" id="comment" required
+                                        [ngModel]="expense.comment">
+                                    <label for="comment" class="form-label">Commento</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" name="date" id="date" required
+                                        [ngModel]="expense.date">
+                                    <label for="date" class="form-label">Data</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating mb-3 text-center">
+                                    <button type="submit" class="btn py-2 bottone w-50">Modifica</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

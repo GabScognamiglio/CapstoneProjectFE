@@ -34,7 +34,7 @@ export class UserDetailsComponent {
     });
     setTimeout(() => {
       this.caricamento=false;
-    }, 200);
+    }, 600);
   }
   
 

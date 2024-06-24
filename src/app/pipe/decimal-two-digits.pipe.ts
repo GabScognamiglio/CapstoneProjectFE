@@ -7,7 +7,7 @@ export class DecimalTwoDigitsPipe implements PipeTransform {
 
   transform(value: number): string {
     if (!value) {
-      return '';
+      return "0";
     }
 
     let strValue = value.toString();

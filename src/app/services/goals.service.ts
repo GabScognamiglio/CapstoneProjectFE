@@ -27,6 +27,13 @@ export class GoalsService {
     return this.http.put(`${this.goalUrl}/${id}`, goal)
   }
 
+  increaseSavedAmount(savingGoalIdd: number, newSavedAmount: number) {
+    const params = {
+      newSavedAmount: newSavedAmount
+    }
+    return this.http.put(`${this.goalUrl}/${savingGoalIdd}/increase-saved-amount`, {params})
+  }
+
   deleteGoal(id: number) {
     return this.http.delete(`${this.goalUrl}/${id}`, { responseType: 'text' as 'json' })
   }

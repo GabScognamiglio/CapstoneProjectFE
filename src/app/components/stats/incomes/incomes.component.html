@@ -60,10 +60,7 @@
                     <span class="loader"></span>
                 </div>
                 <div *ngIf="!caricamento" class="container">
-
-
                     <div>
-                        <h2>Entrate</h2>
                         <div class="container mt-4">
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -75,7 +72,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let transaction of filteredTransactions">
+                                    <tr *ngFor="let transaction of filteredTransactions"
+                                        [routerLink]="['/income-details', transaction.id]">
                                         <td>
                                             <div class="category-icon"
                                                 [ngClass]="getCategoryClass(transaction.category)">

@@ -1,18 +1,213 @@
-<div class="container bg-white rounded-2 p-4 my-5 shadow">
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12 col-md-4">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined me-2">
+                            account_balance
+                        </span>
+                        <p>Bilancio ultimo anno</p>
+                    </div>
+                    <h3 class="card-title">{{yearBalance.balance | decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined text-success me-2">
+                            trending_up
+                        </span>
+                        <p>Entrate Annuali</p>
+                    </div>
+                    <h3 class="card-title">{{yearBalance.totalIncome| decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined text-danger me-2">
+                            trending_down
+                        </span>
+                        <p>Uscite Annuali</p>
+                    </div>
+                    <h3 class="card-title">{{yearBalance.totalExpense| decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-white rounded-2 p-4 mb-5 shadow">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+        </div>
+        <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+            <span class="loader"></span>
+        </div>
+        <div echarts [options]="chartOptionYear" class="chart" *ngIf="!caricamento"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row ">
+        <div class="col-12 col-md-4">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined me-2">
+                            account_balance
+                        </span>
+                        <p>Bilancio dell'ultimo mese</p>
+                    </div>
+                    <h3 class="card-title">{{monthBalance.balance| decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined text-success me-2">
+                            trending_up
+                        </span>
+                        <p>Entrate dell'ultimo mese</p>
+                    </div>
+                    <h3 class="card-title">{{monthBalance.totalIncome| decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined text-danger me-2">
+                            trending_down
+                        </span>
+                        <p>Uscite dell'ultimo mese</p>
+                    </div>
+                    <h3 class="card-title">{{monthBalance.totalExpense| decimalTwoDigits}} € </h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container bg-white rounded-2 p-4 mb-5 shadow">
     <div class="d-flex justify-content-between align-items-center mb-5">
-        <h4 class="mb-0">Spese vs. Entrate</h4>
-        <!-- <div class="d-flex align-items-center justify-content-center">
-            Indietro
-            <button
-                class="btn btn-outline-secondary rounded-circle ms-2 d-flex justify-content-center align-items-center"
-                style="width: 46px; height: 46px;" [routerLink]="['/home']" routerLinkActive="router-link-active">
-                <span class="material-symbols-outlined">
-                    undo
-                </span>
-            </button>
-        </div> -->
-    </div>    
+    </div>
     <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
         <span class="loader"></span>
+    </div>
+    <div echarts [options]="chartOptionMonth" class="chart" *ngIf="!caricamento"></div>
+</div>
+
+<div *ngIf="!caricamento" class="container bg-white rounded-2 p-4 mb-5 shadow">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h4 class="mb-0">Altre statistiche</h4>
+    </div>
+    <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+        <span class="loader"></span>
+    </div>
+    <div class="container" *ngIf="highestExp">
+        <div class="row mt-5">
+            <div class="col-12 col-md-5 col-xl-4">
+                <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <span class="material-symbols-outlined me-2">
+                                paid
+                            </span>
+                            <p>La tua spesa più folle di sempre</p>
+                        </div>
+                        <h3 class="card-title mb-3">{{highestExp.amount | decimalTwoDigits}}</h3>
+                        <p class="card-text text-body-tertiary mb-0">Categoria: <span
+                                *ngIf="highestExp.category != 'ATTIVITA_FISICA'"> {{highestExp.category}} </span>
+                            <span *ngIf="highestExp.category == 'ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
+                        </p>
+                        <p class="card-text text-body-tertiary mb-0">Data: {{highestExp.date | date: 'dd/MM/yyyy' }}</p>
+                        <p class="card-text text-body-tertiary">Tag: {{highestExp.tag}}</p>
+                    </div>
+                </div>
+
+                <div *ngIf="restaurantData" class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <span class="material-symbols-outlined me-2">
+                                restaurant
+                            </span>
+                            <p>Quanto ami mangiare</p>
+                        </div>
+                        <h3 class="card-title">{{restaurantData.totalAmount| decimalTwoDigits}} €</h3>
+                        <p class="card-text text-body-tertiary">Spesi nella categoria RISTORANTI</p>
+                    </div>
+                </div>
+
+                <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <span class="material-symbols-outlined me-2">
+                                featured_seasonal_and_gifts
+                            </span>
+                            <p>Quanti regali ricevi</p>
+                        </div>
+                        <h3 class="card-title">123456789 €</h3>
+                        <p class="card-text text-body-tertiary">Incassati nella categoria REGALI</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 col-xl-8 ">
+                <!-- <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1" style="min-height: 250px">
+                    <ul>
+                        <li *ngFor="let categoryData of categoryDataMap | keyvalue">
+                            {{ categoryData.key }}:
+                            Total Amount: {{ categoryData.value.totalAmount | currency:'EUR':'symbol':'1.2-2' }},
+                            Percentage: {{ categoryData.value.percentage | number:'1.2-2' }}%
+                        </li>
+                    </ul>
+                </div> -->
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <h5 class="testoBluScuro my-2"> Spese per categoria</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="progress mb-4">
+                            <div *ngFor="let categoryData of categoryDataMap | keyvalue" class="progress-bar"
+                                [ngClass]="getCategoryClass(categoryData.key)"
+                                [style.width.%]="categoryData.value.percentage">
+                            </div>
+                        </div>
+                        <ul class="list-group w-100">
+                            <li *ngFor="let categoryData of categoryDataMap | keyvalue"
+                                class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>
+                                    <span class="badge" [ngClass]="getCategoryClass(categoryData.key)"
+                                        style="width: 10px; height: 10px; display: inline-block; margin-right: 10px;"></span>
+                                    <span *ngIf="categoryData.key != 'ATTIVITA_FISICA'"> {{categoryData.key}}</span>
+                                    <span *ngIf="categoryData.key == 'ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
+                                </span>
+                                <p class="d-flex flex-column justify-content-between align-items-end">
+                                    <span> {{ categoryData.value.totalAmount | decimalTwoDigits}} €</span>
+                                    <span class="text-body-tertiary">{{ categoryData.value.percentage | number:'1.0-0'
+                                        }}%</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 </div>

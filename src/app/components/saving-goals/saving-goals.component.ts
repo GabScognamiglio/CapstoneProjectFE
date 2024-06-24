@@ -29,7 +29,6 @@ export class SavingGoalsComponent {
           this.goalSrv.getGoalsByAccountId(user.user.account.id).subscribe(
             (data) => {
               this.goals = data;
-              console.log(this.goals)
             }
           );
         }

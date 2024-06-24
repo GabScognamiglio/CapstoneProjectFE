@@ -33,6 +33,9 @@ import { ExpensesVsIncomesComponent } from './components/stats/expenses-vs-incom
 import { SavingGoalsComponent } from './components/saving-goals/saving-goals.component';
 import { NewGoalComponent } from './components/saving-goals/new-goal/new-goal.component';
 import { DecimalTwoDigitsPipe } from './pipe/decimal-two-digits.pipe';
+import { ExpenseDetailsComponent } from './components/stats/expense-details/expense-details.component';
+import { IncomeDetailsComponent } from './components/stats/income-details/income-details.component';
+
 
 
 
@@ -124,8 +127,17 @@ const routes: Route[] = [
       }
     ],
     canActivate: [AuthGuard]
-  }
-
+  },
+  {
+    path: 'expense-details/:id',
+    component: ExpenseDetailsComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'income-details/:id',
+    component: IncomeDetailsComponent,
+    canActivate:[AuthGuard]
+  },
 
 ]
 @NgModule({
@@ -149,7 +161,9 @@ const routes: Route[] = [
     ExpensesVsIncomesComponent,
     SavingGoalsComponent,
     NewGoalComponent,
-    DecimalTwoDigitsPipe
+    DecimalTwoDigitsPipe,
+    IncomeDetailsComponent,
+    ExpenseDetailsComponent    
   ],
   imports: [
     BrowserModule,
