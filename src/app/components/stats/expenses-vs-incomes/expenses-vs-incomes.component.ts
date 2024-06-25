@@ -24,12 +24,13 @@ export class ExpensesVsIncomesComponent {
   caricamento = true;
   chartOptionYear!: EChartsOption
   chartOptionMonth!: EChartsOption
-  expenses:any[] =[];
-  incomes:any[]=[];
-  highestExp!:ExpenseDTO;
-  highestInc!:IncomeDTO;
+  expenses: any[] = [];
+  incomes: any[] = [];
+  highestExp!: ExpenseDTO;
+  highestInc!: IncomeDTO;
   categoryDataMap: Map<string, { totalAmount: number, percentage: number }> = new Map();
   restaurantData: { totalAmount: number; percentage: number; } | undefined;
+  totalTransaction: number = 0
 
   constructor(private toastr: ToastrService,
     private router: Router,
@@ -42,15 +43,14 @@ export class ExpensesVsIncomesComponent {
       this.user = user;
       if (user) {
         this.accountSrv.getAccountBalanceLast12Months(this.user?.user.account.id).subscribe((data) => {
-          this.yearBalance=data
+          this.yearBalance = data
         }
         )
         this.accountSrv.getAccountBalanceLastMonth(this.user?.user.account.id).subscribe((data) => {
-          this.monthBalance=data
+          this.monthBalance = data
         }
         )
         this.accountSrv.getAccountBalancesMonthlyLast12Months(this.user?.user.account.id).subscribe((data) => {
-          // console.log(data)
           this.monthlyYeasrBalance = data;
           this.chartOptionYear = {
             title: {
@@ -106,80 +106,82 @@ export class ExpensesVsIncomesComponent {
           };
         }
         )
-        this.accountSrv.getAccountBalancesWeeklyLast4Weeks(this.user?.user.account.id).subscribe((data) =>{
-          // console.log(data)
-        this.weeklyMonthBalance = data;
-        this.chartOptionMonth = {
-          title: {
-            text: 'Spese vs. Entrate ultimo mese',
-            left: 'center',
-            top: '0%',
-          },
-          tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-              type: 'shadow'
-            }
-          },
-          legend: {
-            data: ['Entrate', 'Uscite'],
-            top: '8%',
-            left: 'center',
-            orient: 'horizontal',
-            itemGap: 10,
-            textStyle: {
-              fontSize: 10
-            }
-          },
-          xAxis: {
-            type: 'category',
-            data: Object.keys(this.weeklyMonthBalance)
-          },
-          yAxis: {
-            type: 'value'
-          },
-          series: [
-            {
-              name: 'Entrate',
-              type: 'bar',
-              barGap: 0,
-              barCategoryGap: '20%',
-              barMaxWidth: 30,
-              itemStyle: {
-                color: '#122ca9'
-              },
-              data: Object.values(this.weeklyMonthBalance).map((item: any) => item.totalIncome)
+        this.accountSrv.getAccountBalancesWeeklyLast4Weeks(this.user?.user.account.id).subscribe((data) => {
+          this.weeklyMonthBalance = data;
+          this.chartOptionMonth = {
+            title: {
+              text: 'Spese vs. Entrate ultimo mese',
+              left: 'center',
+              top: '0%',
             },
-            {
-              name: 'Uscite',
-              type: 'bar',
-              itemStyle: {
-                color: '#0c1233'
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                type: 'shadow'
+              }
+            },
+            legend: {
+              data: ['Entrate', 'Uscite'],
+              top: '8%',
+              left: 'center',
+              orient: 'horizontal',
+              itemGap: 10,
+              textStyle: {
+                fontSize: 10
+              }
+            },
+            xAxis: {
+              type: 'category',
+              data: Object.keys(this.weeklyMonthBalance)
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                name: 'Entrate',
+                type: 'bar',
+                barGap: 0,
+                barCategoryGap: '20%',
+                barMaxWidth: 30,
+                itemStyle: {
+                  color: '#122ca9'
+                },
+                data: Object.values(this.weeklyMonthBalance).map((item: any) => item.totalIncome)
               },
-              barMaxWidth: 30,
-              data: Object.values(this.weeklyMonthBalance).map((item: any) => item.totalExpense)
-            }
-          ]
-        };
+              {
+                name: 'Uscite',
+                type: 'bar',
+                itemStyle: {
+                  color: '#0c1233'
+                },
+                barMaxWidth: 30,
+                data: Object.values(this.weeklyMonthBalance).map((item: any) => item.totalExpense)
+              }
+            ]
+          };
         }
         )
-        this.transactionSrv.getExpensesByAccountId(this.user?.user.account.id).subscribe((data)=>{
-          this.expenses=data
+        this.transactionSrv.getExpensesByAccountId(this.user?.user.account.id).subscribe((data) => {
+          this.expenses = data
           this.highestExp = this.expenses.reduce((prev, current) =>
             (prev.amount > current.amount) ? prev : current
           );
           this.calculateCategoryData();
           this.restaurantData = this.categoryDataMap.get('RISTORANTI');
-          
+
         })
-        this.transactionSrv.getIncomesByAccountId(this.user?.user.account.id).subscribe((data)=>{
-          this.incomes=data
+        this.transactionSrv.getIncomesByAccountId(this.user?.user.account.id).subscribe((data) => {
+          this.incomes = data
+          this.totalTransaction = this.incomes.length + this.expenses.length
         })
+
       }
 
     })
 
     setTimeout(() => {
+
       this.caricamento = false
     }, 600);
   }
@@ -224,5 +226,5 @@ export class ExpensesVsIncomesComponent {
       default: return 'category-altro'; // Default class
     }
   }
-  
+
 }

@@ -120,8 +120,8 @@
         <span class="loader"></span>
     </div>
     <div class="container" *ngIf="highestExp">
-        <div class="row mt-5">
-            <div class="col-12 col-md-5 col-xl-4">
+        <div class="row mt-5 gx-5">
+            <div class="col-12 col-md-5 ">
                 <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
                     <div class="card-body">
                         <div class="d-flex">
@@ -140,6 +140,19 @@
                     </div>
                 </div>
 
+                <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <span class="material-symbols-outlined me-2">
+                                money
+                            </span>
+                            <p>Numero totale di transazioni</p>
+                        </div>
+                        <h3 class="card-title"> {{totalTransaction}}</h3>
+                        <p class="card-text text-body-tertiary">Sono tutti i movimenti che hai effettuato</p>
+                    </div>
+                </div>
+
                 <div *ngIf="restaurantData" class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
                     <div class="card-body">
                         <div class="d-flex">
@@ -152,6 +165,8 @@
                         <p class="card-text text-body-tertiary">Spesi nella categoria RISTORANTI</p>
                     </div>
                 </div>
+
+                
 
                 <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1">
                     <div class="card-body">
@@ -166,16 +181,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-7 col-xl-8 ">
-                <!-- <div class="card rounded-2 bg-white mb-md-5 mb-3 border-1" style="min-height: 250px">
-                    <ul>
-                        <li *ngFor="let categoryData of categoryDataMap | keyvalue">
-                            {{ categoryData.key }}:
-                            Total Amount: {{ categoryData.value.totalAmount | currency:'EUR':'symbol':'1.2-2' }},
-                            Percentage: {{ categoryData.value.percentage | number:'1.2-2' }}%
-                        </li>
-                    </ul>
-                </div> -->
+            <div class="col-12 col-md-7 ">
                 <div class="card">
                     <div class="card-header bg-white">
                         <h5 class="testoBluScuro my-2"> Spese per categoria</h5>
@@ -197,8 +203,8 @@
                                     <span *ngIf="categoryData.key == 'ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
                                 </span>
                                 <p class="d-flex flex-column justify-content-between align-items-end">
-                                    <span> {{ categoryData.value.totalAmount | decimalTwoDigits}} €</span>
-                                    <span class="text-body-tertiary">{{ categoryData.value.percentage | number:'1.0-0'
+                                    <span class="fw-bold"> {{ categoryData.value.totalAmount | decimalTwoDigits}} €</span>
+                                    <span class="text-body-tertiary">{{ categoryData.value.percentage | decimalTwoDigits
                                         }}%</span>
                                 </p>
                             </li>

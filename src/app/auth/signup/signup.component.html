@@ -9,7 +9,7 @@
                 <p class="nav-link fs-3 fw-bold" id="logoName">GS Budgets</p>
               </div>
               <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Registra il tuo account</h2>
-              <form class="form" class="form" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+              <!-- <form class="form" class="form" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
                 <div class="row gy-2 overflow-hidden">
                     <div class="col-12 col-lg-6">
                         <div class="form-floating mb-3">
@@ -57,7 +57,91 @@
                     <p class="m-0 text-secondary text-center">Hai già un account? <a [routerLink]="['/login']" class="link-primary text-decoration-none">Login</a></p>
                   </div>
                 </div>
+              </form> -->
+              <form class="form" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+                <div class="row gy-2 overflow-hidden">
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="firstName" id="firstName" required ngModel>
+                      <label for="firstName" class="form-label">Nome</label>
+                      <div *ngIf="signupForm.controls['firstName']?.invalid && (signupForm.controls['firstName']?.dirty || signupForm.controls['firstName']?.touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['firstName']?.errors?.['required']"><small>Il nome è richiesto.</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" name="lastName" id="lastName" required ngModel>
+                      <label for="lastName" class="form-label">Cognome</label>
+                      <div *ngIf="signupForm.controls['lastName']?.invalid && (signupForm.controls['lastName']?.dirty || signupForm.controls['lastName']?.touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['lastName']?.errors?.['required']"><small>Il cognome è richiesto.</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3">
+                      <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" required ngModel>
+                      <label for="dateOfBirth" class="form-label">Data di nascita</label>
+                      <div *ngIf="signupForm.controls['dateOfBirth']?.invalid && (signupForm.controls['dateOfBirth']?.dirty || signupForm.controls['dateOfBirth']?.touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['dateOfBirth']?.errors?.['required']"><small>La data di nascita è richiesta.</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3">
+                      <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-control" name="phoneNumber" id="phoneNumber" required ngModel>
+                      <label for="phoneNumber" class="form-label">Numero di telefono</label>
+                      <div *ngIf="signupForm.controls['phoneNumber']?.invalid && (signupForm.controls['phoneNumber']?.dirty || signupForm.controls['phoneNumber']?.touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['phoneNumber']?.errors?.['required']"><small>Il numero di telefono è richiesto.</small></div>
+                        <div *ngIf="signupForm.controls['phoneNumber']?.errors?.['pattern']"><small>Inserisci un numero di telefono valido.</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" name="email" id="email" required ngModel>
+                      <label for="email" class="form-label">Email</label>
+                      <div *ngIf="signupForm.controls['email']?.invalid && (signupForm.controls['email']?.dirty || signupForm.controls['email']?.touched)" class="text-danger">
+                        <div *ngIf="signupForm.controls['email']?.errors?.['required']"><small>L'email è richiesta.</small></div>
+                        <div *ngIf="signupForm.controls['email']?.errors?.['email']"><small>Inserisci un'email valida.</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3 position-relative">
+                      <input type="password" class="form-control" name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$" ngModel #passwordInput>
+                      <label for="password" class="form-label">Password</label>
+                      <button type="button" class="btn bottone position-absolute end-0 top-0" style="height: 58px; z-index: 10;" (click)="togglePasswordVisibility(passwordInput)">
+                        <i [ngClass]="passwordVisible ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill'"></i>
+                      </button>
+                      <div *ngIf="signupForm.controls['password']?.invalid && (signupForm.controls['password']?.touched )" class="text-danger">
+                        <div *ngIf="signupForm.controls['password']?.errors?.['required']"><small>La password è richiesta.</small></div>
+                        <div *ngIf="signupForm.controls['password']?.errors?.['pattern']" ><small>La password deve essere di almeno 8 caratteri e comprendere una maiuscola, una minuscola e un numero.</small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" [ngModel]="confirmPassword" (ngModelChange)="onConfirmPasswordChange($event)">
+                      <label for="confirmPassword" class="form-label">Conferma Password</label>
+                      <div *ngIf="passwordMismatch" class="text-danger">
+                        <small>Le password non corrispondono.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-grid my-3">
+                      <!-- <button class="btn btn-lg" type="submit" id="authBtn" [disabled]="signupForm.invalid">Registrati</button> -->
+                      <button class="btn btn-lg" type="submit" id="authBtn" [disabled]="signupForm.invalid || passwordMismatch">Registrati</button>
+
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <p class="m-0 text-secondary text-center">Hai già un account? <a [routerLink]="['/login']" class="link-primary text-decoration-none">Login</a></p>
+                  </div>
+                </div>
               </form>
+              
             </div>
           </div>
         </div>

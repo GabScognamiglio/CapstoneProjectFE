@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Account } from 'src/app/interfaces/account';
@@ -144,5 +144,8 @@ export class HomeComponent implements OnInit {
       default: return 'category-altro'; // Default class
     }
   }
+
+
+
 
 }

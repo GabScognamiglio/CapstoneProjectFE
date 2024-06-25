@@ -19,52 +19,15 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  // signup(data: SignUp) {
-  //   return this.http.post(`${this.apiURL}register`, data, {responseType:'text'})
-  // }
-
   signup(data: SignUp) {
     return this.http.post(`${this.apiURL}register`, data, { responseType: 'text' }).pipe(
       catchError(this.handleError.bind(this))
     );
   }
 
-  // login(data: { email: string, password: string }) {
-  //   console.log("prova service")
-  //   return this.http.post<AuthData>(`${this.apiURL}login`, data).pipe(
-  //     tap((data) => {
-  //       // alert('Login effettuato.')
-  //       console.log('auth data: ', data)
-  //     }),
-  //     tap((data) => {
-  //       this.authSub.next(data);
-  //       localStorage.setItem('user', JSON.stringify(data));
-  //       this.autologout(data)
-  //     }), catchError(this.errors)
-  //   )
-  // }
-  // private errors(err: any) {
-  //   console.error(err.error)
-  //   switch (err.error) {
-  //     case 'Email already exists':
-  //       return throwError('utente già presente');
-  //       break;
-  //     case 'Incorrect password':
-  //       return throwError('password errata');
-  //       break;
-  //     case 'Cannot find user':
-  //       return throwError('utente inesistente')
-  //     default:
-  //       return throwError('errore generico')
-  //   }
-  // }
-
-
   login(data: { email: string, password: string }) {
-    console.log("prova service");
     return this.http.post<AuthData>(`${this.apiURL}login`, data).pipe(
       tap((data) => {
-        console.log('auth data: ', data);
         this.authSub.next(data);
         localStorage.setItem('user', JSON.stringify(data));
         this.autologout(data);

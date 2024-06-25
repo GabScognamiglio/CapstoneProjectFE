@@ -47,7 +47,9 @@ export class ExpenseDetailsComponent {
     this.transactionSrv.updateExpense(this.expense.id, moddedexpense).subscribe({
       next: () => {
         this.toastr.success('Transazione modificata con successo');
-        window.location.reload()
+        setTimeout(() => {
+          window.location.reload()
+        }, 600);
       },
       error: (error) => {
         console.error(error);

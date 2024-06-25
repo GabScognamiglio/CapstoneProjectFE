@@ -14,7 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 export class SignupComponent {
   userReg!: SignUp;
 
-  constructor(private authSrv: AuthService, private router: Router, private toastr: ToastrService) {}
+
+  constructor(private authSrv: AuthService, private router: Router, private toastr: ToastrService) { }
 
   onSubmit(form: NgForm) {
     console.log(form.value);
@@ -35,5 +36,21 @@ export class SignupComponent {
         this.toastr.error('Problemi nella registrazione', 'Cortesemente riprova.');
       }
     });
+  } 
+  
+  passwordVisible: boolean = false;
+  confirmPassword: string = '';
+  passwordMismatch: boolean = false;
+
+  togglePasswordVisibility(passwordInput: HTMLInputElement): void {
+    this.passwordVisible = !this.passwordVisible;
+    passwordInput.type = this.passwordVisible ? 'text' : 'password';
   }
+
+  onConfirmPasswordChange(value: string): void {
+    this.confirmPassword = value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
+    this.passwordMismatch = this.confirmPassword !== password;
+  }
+
 }

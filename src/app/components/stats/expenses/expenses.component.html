@@ -72,7 +72,7 @@
                                     <tr>
                                         <th>Categoria</th>
                                         <th>Data</th>
-                                        <th>Tag</th>
+                                        <th class="d-none d-md-block">Tag</th>
                                         <th>Ammontare</th>
                                     </tr>
                                 </thead>
@@ -86,7 +86,7 @@
                                             {{ transaction.category }}
                                         </td>
                                         <td>{{ transaction.date | date: 'dd.MM.yyyy' }}</td>
-                                        <td>{{ transaction.tag }}</td>
+                                        <td class="d-none d-md-block">{{ transaction.tag }}</td>
                                         <td>{{ transaction.amount | decimalTwoDigits}}€</td>
                                     </tr>
                                 </tbody>

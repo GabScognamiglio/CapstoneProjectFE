@@ -18,7 +18,8 @@ export class NewGoalComponent {
   constructor(private goalSrv: GoalsService,
     private authSrv: AuthService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router) {
+     }
 
 
   ngOnInit(): void {

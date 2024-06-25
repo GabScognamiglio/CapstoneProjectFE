@@ -16,11 +16,16 @@ export class LoginComponent {
   login(form: NgForm) {
     this.authSrv.login(form.value).subscribe({
       next: () => {
-        this.toastr.success('Login completato!');this.router.navigate(['/home']);
+        this.toastr.success('Login completato!'); this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error(error);
-        this.toastr.error('Login fallito. Per favore controlla le tue credenziali e riprova.');
+        if (error == "Wrong password!") {
+          this.toastr.error('Password errata, riprova.');
+        } else {
+          this.toastr.error('Login fallito. Per favore controlla le tue credenziali e riprova.');
+        }
+
       }
     });
   }

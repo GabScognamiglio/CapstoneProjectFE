@@ -46,7 +46,10 @@ export class IncomeDetailsComponent {
     this.transactionSrv.updateIncome(this.income.id, moddedIncome).subscribe({
       next: () => {
         this.toastr.success('Transazione modificata con successo');
-        window.location.reload()
+        
+        setTimeout(() => {
+          window.location.reload()
+        }, 600);
       },
       error: (error) => {
         console.error(error);
