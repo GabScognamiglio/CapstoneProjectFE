@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { NewGoalComponent } from './components/saving-goals/new-goal/new-goal.co
 import { DecimalTwoDigitsPipe } from './pipe/decimal-two-digits.pipe';
 import { ExpenseDetailsComponent } from './components/stats/expense-details/expense-details.component';
 import { IncomeDetailsComponent } from './components/stats/income-details/income-details.component';
+import { GoalDetailsComponent } from './components/saving-goals/goal-details/goal-details.component';
 
 
 
@@ -163,7 +165,8 @@ const routes: Route[] = [
     NewGoalComponent,
     DecimalTwoDigitsPipe,
     IncomeDetailsComponent,
-    ExpenseDetailsComponent    
+    ExpenseDetailsComponent,
+    GoalDetailsComponent    
   ],
   imports: [
     BrowserModule,
@@ -180,6 +183,17 @@ const routes: Route[] = [
     CommonModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
+    }),
+    NgCircleProgressModule.forRoot({
+      backgroundPadding: 7,
+      radius: 60,
+      maxPercent: 100,
+      outerStrokeWidth: 8,
+      innerStrokeWidth: 4,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+      subtitle: "Progress"
     })
   ],
   providers: [{

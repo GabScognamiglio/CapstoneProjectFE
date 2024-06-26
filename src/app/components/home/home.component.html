@@ -120,7 +120,7 @@
                                     <div class="category-icon" [ngClass]="getCategoryClass(transaction.category)"></div>
                                     {{ transaction.category }}
                                 </td>
-                                <td>{{ transaction.date | date: 'dd.MM.yyyy' }}</td>
+                                <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
                                 <td>{{ transaction.tag }}</td>
                                 <td>{{ transaction.amount | decimalTwoDigits}}€</td>
                             </tr>
@@ -155,7 +155,7 @@
                                     <span *ngIf="transaction.category != 'ATTIVITA_FISICA'">{{ transaction.category }}</span>
                                     <span *ngIf="transaction.category == 'ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
                                 </td>
-                                <td>{{ transaction.date | date: 'dd.MM.yyyy' }}</td>
+                                <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
                                 <td>{{ transaction.tag }}</td>
                                 <td>{{ transaction.amount | decimalTwoDigits}}€</td>
                             </tr>

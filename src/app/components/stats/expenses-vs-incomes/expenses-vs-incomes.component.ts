@@ -173,7 +173,7 @@ export class ExpensesVsIncomesComponent {
         })
         this.transactionSrv.getIncomesByAccountId(this.user?.user.account.id).subscribe((data) => {
           this.incomes = data
-          this.totalTransaction = this.incomes.length + this.expenses.length
+          
         })
 
       }
@@ -181,7 +181,7 @@ export class ExpensesVsIncomesComponent {
     })
 
     setTimeout(() => {
-
+      this.totalTransaction = this.incomes.length + this.expenses.length
       this.caricamento = false
     }, 600);
   }

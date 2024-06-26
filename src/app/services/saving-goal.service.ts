@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,12 @@ export class SavingGoalService {
 
   //AGGIORNA L'OBIETTIVO E CREA UNA SPESA
   updateSavingGoal(id: number, newSavedAmount:number) {
-    return this.http.put(`${this.savingGoalUrl}/${id}/increse-saved-amount`, {newSavedAmount})
+    return this.http.put(`${this.savingGoalUrl}/${id}/increse-saved-amount`, {newSavedAmount}, )
+  }
+
+  increaseSavedAmount(savingGoalId: number, newSavedAmount: number): Observable<any> {
+    const url = `${this.saveSavingGoal}/${savingGoalId}/increase-saved-amount`;
+    return this.http.put(url, { newSavedAmount });
   }
 
   deleteSavingGoal(id:number) {
