@@ -37,6 +37,10 @@ import { DecimalTwoDigitsPipe } from './pipe/decimal-two-digits.pipe';
 import { ExpenseDetailsComponent } from './components/stats/expense-details/expense-details.component';
 import { IncomeDetailsComponent } from './components/stats/income-details/income-details.component';
 import { GoalDetailsComponent } from './components/saving-goals/goal-details/goal-details.component';
+import { UserListComponent } from './components/admin-section/user-list/user-list.component';
+import { TicketListComponent } from './components/admin-section/ticket-list/ticket-list.component';
+import { AdminUserDetailsComponent } from './components/admin-section/user-list/admin-user-details/admin-user-details.component';
+
 
 
 
@@ -133,13 +137,28 @@ const routes: Route[] = [
   {
     path: 'expense-details/:id',
     component: ExpenseDetailsComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'income-details/:id',
     component: IncomeDetailsComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard]
   },
+  {
+    path: 'user-list',
+    component: UserListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ticket-list',
+    component: TicketListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-user-details/:id',
+    component: AdminUserDetailsComponent,
+    canActivate: [AuthGuard]
+  }
 
 ]
 @NgModule({
@@ -166,7 +185,11 @@ const routes: Route[] = [
     DecimalTwoDigitsPipe,
     IncomeDetailsComponent,
     ExpenseDetailsComponent,
-    GoalDetailsComponent    
+    GoalDetailsComponent,
+    LandingPageComponent,
+    UserListComponent,
+    TicketListComponent,
+    AdminUserDetailsComponent,
   ],
   imports: [
     BrowserModule,

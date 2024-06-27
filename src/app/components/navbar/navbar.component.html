@@ -5,7 +5,11 @@
             <div class="d-flex justify-content-end align-items-center">
                 <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/login']">Login</a>
                 <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/signup']">Registrati</a>
+                <button (click)="toggleTheme()">
+                    {{ isDarkTheme() ? 'Switch to Light Theme' : 'Switch to Dark Theme' }}
+                </button>
                 <div *ngIf="user" class="dropdown" style="height: 38px; width: 38px;">
+
                     <a data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="material-symbols-outlined" style="font-size: 38px;">
                             account_circle
@@ -29,61 +33,86 @@
 </div>
 
 <div class="sidebar ">
+    <ul *ngIf="user && user.user.role=='ADMIN'" class="nav flex-column justify-content-start align-items-center h-50 " style="margin-top: 100px;">
+        <li *ngIf="user && user.user.role=='ADMIN'" class="nav-item">
+        <a class="nav-link text-light mb-5" [routerLink]="['/user-list']" routerLinkActive="active" title="Supporto"><span
+                class="material-symbols-outlined" style="font-size: 28px;">
+                group
+            </span></a>
+    </li>
+    <li *ngIf="user && user.user.role=='ADMIN'" class="nav-item">
+        <a class="nav-link text-light" [routerLink]="['/ticket-list']" routerLinkActive="active" title="Supporto"><span
+                class="material-symbols-outlined" style="font-size: 28px;">
+                support_agent
+            </span></a>
+    </li>
+    </ul>
+    
     <ul class="nav flex-column justify-content-around align-items-center">
+        
         <li *ngIf="user" class="nav-item">
-            <a class="nav-link text-light" [routerLink]="['/home']" routerLinkActive="active"
+            <a *ngIf="user && user.user.role=='USER'" class="nav-link text-light" [routerLink]="['/home']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" title="Home"><span class="material-symbols-outlined"
                     style="font-size: 28px;">
                     home
                 </span></a>
         </li>
-        <li *ngIf="user && user.user.role" class="nav-item">
+        <li *ngIf="user && user.user.role=='USER'" class="nav-item">
             <a class="nav-link text-light" [routerLink]="['/saving-goals']" routerLinkActive="active"
                 title="Obiettivi"><span class="material-symbols-outlined" style="font-size: 28px;">
                     target
                 </span></a>
         </li>
-        <li *ngIf="user && user.user.role" class="nav-item">
+        <li *ngIf="user && user.user.role=='USER'" class="nav-item">
             <a class="nav-link text-light" [routerLink]="['/stats/expenses']" routerLinkActive="active"
                 title="Statistiche"><span class="material-symbols-outlined" style="font-size: 28px;">
                     equalizer
                 </span></a>
         </li>
-        <li *ngIf="user && user.user.role" class="nav-item">
+        <li *ngIf="user && user.user.role=='USER'" class="nav-item">
             <a class="nav-link text-light" [routerLink]="['/profile-settings/details']" routerLinkActive="active"
                 title="Account"><span class="material-symbols-outlined" style="font-size: 28px;">
                     manage_accounts
                 </span></a>
         </li>
-        <li *ngIf="user && user.user.role" class="nav-item">
+        <li *ngIf="user && user.user.role=='USER'" class="nav-item">
             <a class="nav-link text-light" [routerLink]="['/support']" routerLinkActive="active" title="Supporto"><span
                     class="material-symbols-outlined" style="font-size: 28px;">
                     support_agent
                 </span></a>
         </li>
+        
     </ul>
 </div>
 
 <div class="container-fluid bottom-bar text-light">
 
-    <a *ngIf="user && user.user.role == 'USER'" class="nav-link " [routerLink]="['/home']" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }" ><span class="material-symbols-outlined px-2 py-1"
+    <a *ngIf="user && user.user.role=='USER'" class="nav-link " [routerLink]="['/home']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"><span class="material-symbols-outlined px-2 py-1"
             style="font-size: 28px;">
             home
         </span></a>
-    <a *ngIf="user && user.user.role" class="nav-link" [routerLink]="['/saving-goals']" routerLinkActive="active"><span
-            class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
+    <a *ngIf="user && user.user.role=='USER'" class="nav-link" [routerLink]="['/saving-goals']"
+        routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
             target
         </span></a>
-    <a *ngIf="user && user.user.role" class="nav-link text-light" [routerLink]="['/stats/expenses']"
+    <a *ngIf="user && user.user.role=='USER'" class="nav-link text-light" [routerLink]="['/stats/expenses']"
         routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
             equalizer
         </span></a>
-    <a *ngIf="user && user.user.role" class="nav-link" [routerLink]="['/profile-settings/details']"
+    <a *ngIf="user && user.user.role=='USER'" class="nav-link" [routerLink]="['/profile-settings/details']"
         routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
             manage_accounts
         </span></a>
-    <a *ngIf="user && user.user.role" class="nav-link text-light mx2" [routerLink]="['/support']"
+    <a *ngIf="user && user.user.role=='USER'" class="nav-link text-light mx2" [routerLink]="['/support']"
+        routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
+            support_agent
+        </span></a>
+    <a *ngIf="user && user.user.role=='ADMIN'" class="nav-link text-light mx2" [routerLink]="['/user-list']"
+        routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
+            group
+        </span></a>
+    <a *ngIf="user && user.user.role=='ADMIN'" class="nav-link text-light mx2" [routerLink]="['/ticket-list']"
         routerLinkActive="active"><span class="material-symbols-outlined px-2 py-1" style="font-size: 28px;">
             support_agent
         </span></a>

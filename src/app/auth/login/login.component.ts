@@ -16,7 +16,8 @@ export class LoginComponent {
   login(form: NgForm) {
     this.authSrv.login(form.value).subscribe({
       next: () => {
-        this.toastr.success('Login completato!'); this.router.navigate(['/home']);
+        this.toastr.success('Login completato!');
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error(error);

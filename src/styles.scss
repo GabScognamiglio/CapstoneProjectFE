@@ -8,6 +8,35 @@ body {
   font-weight: 400 !important;
 }
 
+body.dark-theme,
+body.dark-theme .navbar{
+  background-color: #0d1333;
+  color: #ffffff !important;
+}
+
+body.dark-theme .rounded-2,
+body.dark-theme .container table tr td,
+body.dark-theme .container table tr th,
+body.dark-theme .card-body,
+body.dark-theme .container table tr td,
+body.dark-theme .container .list-group
+{
+  background-color: #161f52 !important;
+  color: #ffffff !important;
+  border-color:  #0d1333 !important;
+}
+
+body.dark-theme .table-bordered,
+body.dark-theme .container table tr th{
+  border-width: 0 !important;
+}
+
+
+
+body.dark-theme .text-body-tertiary{
+  color: #365ad3 !important;
+}
+
 h1,
 h2,
 h3,

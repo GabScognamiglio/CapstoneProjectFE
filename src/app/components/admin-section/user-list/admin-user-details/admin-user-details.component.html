@@ -1,0 +1,100 @@
+<div class="container mt-5">
+    <h2>Dettagli utente</h2>
+    <p class="text-body-tertiary">Controlla qui i dettagli del'utente selezionato.</p>
+</div>
+
+<div class="container rounded-2 bg-white mb-5 p-4 shadow border-0">
+    <div class="card mb-4">
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">ID utente</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">#{{user?.id}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">Ruolo</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{user?.role}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">Nome</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{user?.firstName}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">Cognome</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{user?.lastName}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">Email</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{user?.email}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">Telefono</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{user?.phoneNumber}}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="mb-0 testoBluScuro">Data di nascita</p>
+                </div>
+                <div class="col-sm-9">
+                    <p class="text-muted mb-0">{{user?.dateOfBirth}}</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 col-lg-12" *ngIf="!caricamento">
+            <h5 class="mt-5 mb-3" *ngIf="user.tickets.length>0">Ticket utente</h5>
+            <div class="list-group" *ngFor="let ticket of user.tickets">
+                <a class="list-group-item list-group-item-action p-4">
+                    <div class="d-flex w-100 justify-content-between align-items-center testoBluScuro mb-3">
+                        <h5 class="">{{ticket.object}}</h5>
+                        <button class="btn bottone">Rispondi</button>
+                    </div>
+                    <p class="mb-1">{{ticket.description}}</p>
+                    <small class="text-body-secondary">Ticket ID: #{{ticket.id}}</small><br>
+                    <small class="text-body-secondary">Status: {{ticket.status}}</small><br>
+                    <div class="d-flex w-100 justify-content-between testoBluScuro">
+                        <small class="text-body-secondary">Risposto: <span *ngIf="ticket.adminAnswer">✅</span><span
+                                *ngIf="!ticket.adminAnswer">❌</span></small>
+                        <small class="text-body-secondary">{{ticket.date | date: "dd/MM/yyyy"}}</small>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        <div class="col-12 col-lg-6"></div>
+    </div>

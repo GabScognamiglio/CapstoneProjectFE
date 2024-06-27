@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AuthData } from 'src/app/interfaces/auth-data';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { AuthData } from 'src/app/interfaces/auth-data';
 export class NavbarComponent {
   user!: AuthData | null;
 
-  constructor(private authSrv: AuthService) { }
+  constructor(private authSrv: AuthService, private themeService: ThemeService) { }
 
   ngOnInit(): void {
     this.authSrv.user$.subscribe((user) =>
@@ -21,9 +22,11 @@ export class NavbarComponent {
     this.authSrv.logout();
   }
 
-  isDarkMode = false; // Stato tema iniziale (chiaro per impostazione predefinita)
+  isDarkTheme(): boolean {
+    return this.themeService.isDark();
+  }
 
   toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
+    this.themeService.toggleTheme();
   }
 }
