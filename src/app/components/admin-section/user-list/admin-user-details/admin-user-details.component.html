@@ -82,7 +82,8 @@
                 <a class="list-group-item list-group-item-action p-4">
                     <div class="d-flex w-100 justify-content-between align-items-center testoBluScuro mb-3">
                         <h5 class="">{{ticket.object}}</h5>
-                        <button class="btn bottone">Rispondi</button>
+                        <button class="btn bottone" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#exampleModal'+ticket.id">Rispondi</button>
                     </div>
                     <p class="mb-1">{{ticket.description}}</p>
                     <small class="text-body-secondary">Ticket ID: #{{ticket.id}}</small><br>
@@ -94,7 +95,29 @@
                     </div>
                 </a>
 
+
+                <div *ngIf="!caricamento" class="modal fade" id="exampleModal{{ticket.id}}"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                        <div class="modal-content full-width-modal">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Rispondi all'utente</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form" class="form" #modObiettivo="ngForm">
+                                    <div class="row gy-2 overflow-hidden">
+                                        
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
+            <div class="col-12 col-lg-6"></div>
         </div>
-        <div class="col-12 col-lg-6"></div>
-    </div>
