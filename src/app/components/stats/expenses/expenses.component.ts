@@ -38,21 +38,34 @@ export class ExpensesComponent {
     category: '',
     date: '',
     minAmount: null,
-    maxAmount: null
+    maxAmount: null,
+    futureDate: false,
+    sortOrder: 'desc' // 'asc' per ordine crescente, 'desc' per ordine decrescente
   };
 
   get filteredTransactions() {
-    return this.expenses.filter((transaction: any) => {
+    return this.expenses
+    .filter((transaction: any) => {
       const matchesCategory = this.filters.category ? transaction.category.includes(this.filters.category) : true;
       const matchesDate = this.filters.date ? transaction.date === this.filters.date : true;
       const matchesMinAmount = this.filters.minAmount !== null ? transaction.amount >= this.filters.minAmount : true;
       const matchesMaxAmount = this.filters.maxAmount !== null ? transaction.amount <= this.filters.maxAmount : true;
-      return matchesCategory && matchesDate && matchesMinAmount && matchesMaxAmount;
-    });
+      const matchesFutureDate = this.filters.futureDate ? new Date(transaction.date) > new Date() : true;
+      return matchesCategory && matchesDate && matchesMinAmount && matchesMaxAmount && matchesFutureDate;
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return this.filters.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });;
   }
 
   setCategoryFilter(category: any) {
     this.filters.category = category;
+  }
+  setFutureDateFilter(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.filters.futureDate = inputElement.checked;
   }
 
   get uniqueCategories() {
@@ -137,5 +150,8 @@ export class ExpensesComponent {
       }]
     };
   }
-  
+  setSortOrder(event: Event) {
+    const inputElement = event.target as HTMLSelectElement;
+    this.filters.sortOrder = inputElement.value;
+  }
 }

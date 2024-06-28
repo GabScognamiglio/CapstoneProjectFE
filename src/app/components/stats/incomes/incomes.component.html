@@ -5,7 +5,7 @@
                 <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
                     <span class="loader"></span>
                 </div>
-                <div *ngIf="!caricamento" class="mb-5">
+                <div *ngIf="!caricamento" class="mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-5">
                         <h4 class="mb-0">Filtri</h4>
                     </div>
@@ -18,21 +18,40 @@
                         <span class="badge bg-secondary p-3 m-2" (click)="setCategoryFilter('')">Tutti</span>
                     </div>
                     <div class="row gy-2 overflow-hidden mt-4">
-                        <div class="col-6 col-lg-12">
+                        <div class="mt-5 col-12">
+                            <h5>Date:</h5>
+                            <input class="form-check-input" type="checkbox" id="futureDate" (change)="setFutureDateFilter($event)">
+                            <label class="form-check-label" for="futureDate">&nbsp; Transazioni future</label>
+                            
+                        </div>
+                        <div class="col-12">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" name="date" id="date" [(ngModel)]="filters.date">
-                                <label for="date" class="form-label">Data</label>
+                                <select class="form-select" id="sortOrder" (change)="setSortOrder($event)">
+                                    <option value="asc">Crescente</option>
+                                    <option value="desc" selected>Decrescente</option>
+                                </select>
+                                <label for="sortOrder" class="form-label">Ordine</label>
                             </div>
                         </div>
                         <div class="col-6 col-lg-12">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" name="ammontareMin" id="ammontareMin" [(ngModel)]="filters.minAmount">
+                                <input type="date" class="form-control" name="date" id="date"
+                                    [(ngModel)]="filters.date">
+                                <label for="date" class="form-label">Data</label>
+                            </div>
+                        </div>
+                        <h5 class="mt-5">Ammontare:</h5>
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="ammontareMin" id="ammontareMin"
+                                    [(ngModel)]="filters.minAmount">
                                 <label for="ammontareMin" class="form-label">Ammontare minimo</label>
                             </div>
                         </div>
                         <div class="col-6 col-lg-12">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" name="ammontaremax" id="ammontaremax" [(ngModel)]="filters.maxAmount">
+                                <input type="number" class="form-control" name="ammontaremax" id="ammontaremax"
+                                    [(ngModel)]="filters.maxAmount">
                                 <label for="ammontaremax" class="form-label">Ammontare massimo</label>
                             </div>
                         </div>
@@ -47,9 +66,9 @@
                 <div *ngIf="!caricamento">
                     <div echarts [options]="options" class="chart"></div>
                 </div>
-    
+
             </div>
-            
+
         </div>
         <div class="col-12 col-lg-8">
             <div class="container bg-white rounded-2 p-4 my-5 shadow">

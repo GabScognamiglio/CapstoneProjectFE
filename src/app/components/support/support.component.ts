@@ -17,6 +17,8 @@ export class SupportComponent {
   user!: AuthData | null;
   tickets: TicketDTO[] = [];
 
+  
+
   constructor(private ticketSrv: TicketsService, private authSrv: AuthService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {

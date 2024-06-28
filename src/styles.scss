@@ -55,9 +55,9 @@ h4 {
 
 .btn-outline-blu:hover,
 .btn-outline-blu:active{
-  background-color: #122ca9;
-  border-color: #122ca9;
-  color: white;
+  background-color: #122ca9 !important;
+  border-color: #122ca9 !important;
+  color: white !important;
 }
 
 .btn-outline-blu-scuro{
@@ -266,6 +266,35 @@ h4 {
   animation: fade-in 1.2s cubic-bezier(.39, .575, .565, 1.000) both
 }
 
+
+ ::-webkit-scrollbar {
+  position: absolute;
+  right: 0;
+  width: 8px;  
+}
+
+::-webkit-scrollbar:hover,
+::-webkit-scrollbar:active{
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #122ba983;  
+  border-radius: 6px;  
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: #122ba9cc; 
+ 
+}
+
+::-webkit-scrollbar-button {
+  display: none;  
+}
 
 @-webkit-keyframes fade-in {
   0% {

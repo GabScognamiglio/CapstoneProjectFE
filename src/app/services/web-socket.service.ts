@@ -1,4 +1,3 @@
-// src/app/services/websocket.service.ts
 import { Injectable } from '@angular/core';
 import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
