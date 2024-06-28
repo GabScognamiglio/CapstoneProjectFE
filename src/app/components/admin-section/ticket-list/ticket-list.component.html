@@ -5,6 +5,89 @@
 
 
 <div class="container rounded-2 bg-white mb-5 p-4 shadow border-0">
-    qui ci sarà la lista dei tickets
+    <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+        <span class="loader"></span>
+    </div>
+    <div class="col-12 col-lg-12" *ngIf="!caricamento">
+        <div class="d-flex  align-items-center mb-3">
+            <span class="material-symbols-outlined">
+                filter_alt
+                </span>
+            <button class="btn mx-2 btn-sm btn-dark" (click)="setFilterStatus('ALL')" [class.active]="filterStatus === 'ALL'">Tutti</button>
+            <button class="btn mx-2 btn-sm btn-success" (click)="setFilterStatus('OPEN')" [class.active]="filterStatus === 'OPEN'">Aperto</button>
+            <button class="btn mx-2 btn-sm btn-warning" (click)="setFilterStatus('SUSPENDED')" [class.active]="filterStatus === 'SUSPENDED'">Sospeso</button>
+            <button class="btn mx-2 btn-sm btn-danger" (click)="setFilterStatus('CLOSED')" [class.active]="filterStatus === 'CLOSED'">Chiuso</button>
+          </div>
+        <div class="list-group" *ngFor="let ticket of filterTickets()">
+            <a class="list-group-item list-group-item-action p-4" id="dark">
+                <div class="d-flex w-100 justify-content-between align-items-center testoBluScuro mb-3">
+                    <h5 class="">{{ticket.object}}</h5>
+                    <button class="btn bottone" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#exampleModal'+ticket.id">Rispondi</button>
+                </div>
+                <p class="mb-1"><small class="text-body-secondary">Descrizione Problema:</small>
+                    {{ticket.description}}</p>
+                <small class="text-body-secondary">User ID: #{{ticket.user.id}}</small><br>
+                <small class="text-body-secondary">Ticket ID: #{{ticket.id}}</small><br>
+                <small class="text-body-secondary">Status: {{ticket.status}}</small><br>
+                <div class="d-flex w-100 justify-content-between testoBluScuro">
+                    <p class="mb-1"><small class="text-body-secondary">Risposta: &nbsp;</small> <span
+                            *ngIf="ticket.adminAnswer">{{ticket.adminAnswer}}</span><span
+                            *ngIf="!ticket.adminAnswer">❌</span></p>
+                    <small class="text-body-secondary">{{ticket.date | date: "dd/MM/yyyy"}}</small>
+                </div>
+
+            </a>
+
+
+            <div *ngIf="!caricamento" class="modal fade" id="exampleModal{{ticket.id}}"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content full-width-modal">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Rispondi all'utente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" class="form" #ticketAnswer="ngForm"
+                                (submit)="patchRisposta(ticket.id, ticketAnswer)">
+                                <div class="row gy-2 overflow-hidden">
+
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" name="status" id="status" required
+                                                [ngModel]="ticket.status">
+                                                <option value="OPEN">Aperto</option>
+                                                <option value="SUSPENDED">Sospeso</option>
+                                                <option value="CLOSED">Chiuso</option>
+                                            </select>
+                                            <label for="status" class="form-label">Stato</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control" name="adminAnswer" id="adminAnswer"
+                                                placeholder="descrivilo con una parola" rows="2" ngModel></textarea>
+                                            <label for="adminAnswer" class="form-label">Risposta</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-grid my-3">
+                                            <button class="btn btn-lg" type="submit" id="authBtn"
+                                                [disabled]="!ticketAnswer.valid">Salva
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-12 col-lg-6"></div>
+    </div>
 
 </div>

@@ -38,4 +38,8 @@ export class AdminService {
   getTicketById(id: number) {
     return this.http.get(`${this.ticketUrl}/${id}`);
   }
+
+  patchAdminAnswer(id:number, adminTicketAnser:any){
+    return this.http.patch(`${this.ticketUrl}/${id}/admin-answer`, adminTicketAnser);
+  }
 }

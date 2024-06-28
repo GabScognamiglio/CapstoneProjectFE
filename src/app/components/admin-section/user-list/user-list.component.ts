@@ -14,6 +14,7 @@ export class UserListComponent {
   size: number = 10;
   sortBy: string = 'id';
   totalPages: number = 0;
+  searchText: string = '';
 
   constructor(private adminSrv: AdminService) { }
 
@@ -32,6 +33,16 @@ export class UserListComponent {
   onPageChange(page: number): void {
     this.page = page;
     this.loadUsers();
+  }
+
+  filterUsers(): any[] {
+    return this.users.filter(user =>
+      user.firstName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      user.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      user.username.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      user.id.toString().includes(parseInt(this.searchText))
+    );
   }
 }
 

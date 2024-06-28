@@ -48,6 +48,30 @@ h4 {
   color: #122ca9;
 }
 
+.btn-outline-blu{
+  border-color: #122ca9;
+  color: #122ca9;
+}
+
+.btn-outline-blu:hover,
+.btn-outline-blu:active{
+  background-color: #122ca9;
+  border-color: #122ca9;
+  color: white;
+}
+
+.btn-outline-blu-scuro{
+  border-color: #0d1333;
+  color: #0d1333;
+}
+
+.btn-outline-blu-scuro:hover,
+.btn-outline-blu-scuro:active{
+  background-color: #0d1333;
+  border-color: #0d1333;
+  color: white;
+}
+
 .testoBluScuro {
   color: #1F2C73 !important;
 }

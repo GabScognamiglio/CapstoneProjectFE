@@ -15,9 +15,13 @@ export class LoginComponent {
 
   login(form: NgForm) {
     this.authSrv.login(form.value).subscribe({
-      next: () => {
-        this.toastr.success('Login completato!');
-        this.router.navigate(['/home']);
+      next: (user) => {
+          this.toastr.success('Login completato!');
+          if (user.user.role === 'ADMIN') {
+              this.router.navigate(['/user-list']);
+          } else {
+              this.router.navigate(['/home']);
+          }
       },
       error: (error) => {
         console.error(error);

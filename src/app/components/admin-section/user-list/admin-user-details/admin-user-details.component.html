@@ -8,7 +8,7 @@
         <div class="card-body p-4">
             <div class="row">
                 <div class="col-sm-3">
-                    <p class="mb-0 testoBluScuro">ID utente</p>
+                    <p class="mb-0 testoBluScuro" >ID utente</p>
                 </div>
                 <div class="col-sm-9">
                     <p class="text-muted mb-0">#{{user?.id}}</p>
@@ -76,23 +76,26 @@
 
     <div class="row">
 
-        <div class="col-12 col-lg-12" *ngIf="!caricamento">
+        <div class="col-12 col-lg-12 mb-5" *ngIf="!caricamento">
             <h5 class="mt-5 mb-3" *ngIf="user.tickets.length>0">Ticket utente</h5>
             <div class="list-group" *ngFor="let ticket of user.tickets">
                 <a class="list-group-item list-group-item-action p-4">
                     <div class="d-flex w-100 justify-content-between align-items-center testoBluScuro mb-3">
                         <h5 class="">{{ticket.object}}</h5>
                         <button class="btn bottone" data-bs-toggle="modal"
-                        [attr.data-bs-target]="'#exampleModal'+ticket.id">Rispondi</button>
+                            [attr.data-bs-target]="'#exampleModal'+ticket.id">Rispondi</button>
                     </div>
-                    <p class="mb-1">{{ticket.description}}</p>
+                    <p class="mb-1"><small class="text-body-secondary">Descrizione Problema:</small>
+                        {{ticket.description}}</p>
                     <small class="text-body-secondary">Ticket ID: #{{ticket.id}}</small><br>
                     <small class="text-body-secondary">Status: {{ticket.status}}</small><br>
                     <div class="d-flex w-100 justify-content-between testoBluScuro">
-                        <small class="text-body-secondary">Risposto: <span *ngIf="ticket.adminAnswer">✅</span><span
-                                *ngIf="!ticket.adminAnswer">❌</span></small>
+                        <p class="mb-1"><small class="text-body-secondary">Risposta: &nbsp;</small> <span
+                            *ngIf="ticket.adminAnswer">{{ticket.adminAnswer}}</span><span
+                            *ngIf="!ticket.adminAnswer">❌</span></p>
                         <small class="text-body-secondary">{{ticket.date | date: "dd/MM/yyyy"}}</small>
                     </div>
+                    
                 </a>
 
 
@@ -106,10 +109,35 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="form" class="form" #modObiettivo="ngForm">
+                                <form class="form" class="form" #ticketAnswer="ngForm"
+                                    (submit)="patchRisposta(ticket.id, ticketAnswer)">
                                     <div class="row gy-2 overflow-hidden">
-                                        
 
+                                        <div class="col-12 col-lg-6">
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" name="status" id="status" required
+                                                    [ngModel]="ticket.status">
+                                                    <option value="OPEN">Aperto</option>
+                                                    <option value="SUSPENDED">Sospeso</option>
+                                                    <option value="CLOSED">Chiuso</option>
+                                                </select>
+                                                <label for="status" class="form-label">Stato</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" name="adminAnswer" id="adminAnswer"
+                                                    placeholder="descrivilo con una parola" rows="2" ngModel></textarea>
+                                                <label for="adminAnswer" class="form-label">Risposta</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-grid my-3">
+                                                <button class="btn btn-lg" type="submit" id="authBtn"
+                                                    [disabled]="!ticketAnswer.valid">Salva
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
