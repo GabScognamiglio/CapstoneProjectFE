@@ -5,9 +5,9 @@
             <div class="d-flex justify-content-end align-items-center">
                 <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/login']">Login</a>
                 <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/signup']">Registrati</a>
-                <button (click)="toggleTheme()">
+                <!-- <button (click)="toggleTheme()">
                     {{ isDarkTheme() ? 'Switch to Light Theme' : 'Switch to Dark Theme' }}
-                </button>
+                </button> -->
                 <div *ngIf="user" class="dropdown" style="height: 38px; width: 38px;">
 
                     <a data-bs-toggle="dropdown" aria-expanded="false">

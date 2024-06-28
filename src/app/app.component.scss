@@ -1,0 +1,23 @@
+.rocket {
+    z-index: 1000000;
+    position: fixed;
+    bottom: 0;
+    left: -100px;
+    width: 100px;
+    height: 100px;
+    background-image: url('./../assets/rocket.png'); /* Sostituisci con il percorso dell'immagine del razzo */
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fly 2s linear;
+  }
+  
+  @keyframes fly {
+    from {
+      left: -100px;
+      bottom: 0;
+    }
+    to {
+      left: 100vw;
+      bottom: 100vh;
+    }
+  }

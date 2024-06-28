@@ -40,6 +40,8 @@ import { GoalDetailsComponent } from './components/saving-goals/goal-details/goa
 import { UserListComponent } from './components/admin-section/user-list/user-list.component';
 import { TicketListComponent } from './components/admin-section/ticket-list/ticket-list.component';
 import { AdminUserDetailsComponent } from './components/admin-section/user-list/admin-user-details/admin-user-details.component';
+import { Error404Component } from './components/error404/error404.component';
+
 
 
 
@@ -158,6 +160,10 @@ const routes: Route[] = [
     path: 'admin-user-details/:id',
     component: AdminUserDetailsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    component: Error404Component
   }
 
 ]
@@ -190,6 +196,7 @@ const routes: Route[] = [
     UserListComponent,
     TicketListComponent,
     AdminUserDetailsComponent,
+    Error404Component,
   ],
   imports: [
     BrowserModule,
@@ -222,7 +229,7 @@ const routes: Route[] = [
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi: true
+    multi: true,
   },
     AuthService],
   bootstrap: [AppComponent]
