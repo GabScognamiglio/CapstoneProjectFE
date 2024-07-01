@@ -49,6 +49,7 @@ import { ChangeColorOnScrollDirective } from './directives/change-color-on-scrol
 
 
 
+
 const routes: Route[] = [
 
   {
@@ -199,8 +200,7 @@ const routes: Route[] = [
     TicketListComponent,
     AdminUserDetailsComponent,
     Error404Component,
-    ChangeColorOnScrollDirective,
-    
+    ChangeColorOnScrollDirective    
   ],
   imports: [
     BrowserModule,
