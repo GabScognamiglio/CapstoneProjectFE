@@ -21,7 +21,6 @@ export class IncomeDetailsComponent {
       const id = +params['id'];
       this.transactionSrv.getIncomeById(id).subscribe((data) => {
         this.income = data
-        console.log(this.income)
       });
     })
 

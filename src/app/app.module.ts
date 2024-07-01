@@ -41,6 +41,8 @@ import { UserListComponent } from './components/admin-section/user-list/user-lis
 import { TicketListComponent } from './components/admin-section/ticket-list/ticket-list.component';
 import { AdminUserDetailsComponent } from './components/admin-section/user-list/admin-user-details/admin-user-details.component';
 import { Error404Component } from './components/error404/error404.component';
+import { ChangeColorOnScrollDirective } from './directives/change-color-on-scroll.directive';
+
 
 
 
@@ -197,6 +199,8 @@ const routes: Route[] = [
     TicketListComponent,
     AdminUserDetailsComponent,
     Error404Component,
+    ChangeColorOnScrollDirective,
+    
   ],
   imports: [
     BrowserModule,

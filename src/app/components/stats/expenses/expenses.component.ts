@@ -39,34 +39,61 @@ export class ExpensesComponent {
     date: '',
     minAmount: null,
     maxAmount: null,
-    futureDate: false,
     sortOrder: 'desc' // 'asc' per ordine crescente, 'desc' per ordine decrescente
-  };
+};
 
-  get filteredTransactions() {
+dateFilters = {
+    futureDate: true,
+    pastDate: true
+};
+
+get filteredTransactions() {
     return this.expenses
-    .filter((transaction: any) => {
-      const matchesCategory = this.filters.category ? transaction.category.includes(this.filters.category) : true;
-      const matchesDate = this.filters.date ? transaction.date === this.filters.date : true;
-      const matchesMinAmount = this.filters.minAmount !== null ? transaction.amount >= this.filters.minAmount : true;
-      const matchesMaxAmount = this.filters.maxAmount !== null ? transaction.amount <= this.filters.maxAmount : true;
-      const matchesFutureDate = this.filters.futureDate ? new Date(transaction.date) > new Date() : true;
-      return matchesCategory && matchesDate && matchesMinAmount && matchesMaxAmount && matchesFutureDate;
-    })
-    .sort((a, b) => {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
-      return this.filters.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
-    });;
-  }
+        .filter((transaction: any) => {
+            const matchesCategory = this.filters.category ? transaction.category.includes(this.filters.category) : true;
+            const matchesDate = this.filters.date ? transaction.date === this.filters.date : true;
+            const matchesMinAmount = this.filters.minAmount !== null ? transaction.amount >= this.filters.minAmount : true;
+            const matchesMaxAmount = this.filters.maxAmount !== null ? transaction.amount <= this.filters.maxAmount : true;
+            const matchesFutureDate = this.dateFilters.futureDate ? new Date(transaction.date) > new Date() : true;
+            const matchesPastDate = this.dateFilters.pastDate ? new Date(transaction.date) < new Date() : true;
+            return matchesCategory && matchesDate && matchesMinAmount && matchesMaxAmount &&
+                   ((this.dateFilters.futureDate && matchesFutureDate) || (this.dateFilters.pastDate && matchesPastDate));
+        })
+        .sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+            return this.filters.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+        });
+}
 
-  setCategoryFilter(category: any) {
+setCategoryFilter(category: string) {
     this.filters.category = category;
-  }
-  setFutureDateFilter(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.filters.futureDate = inputElement.checked;
-  }
+}
+
+setSortOrder(event: Event) {
+    const inputElement = event.target as HTMLSelectElement;
+    this.filters.sortOrder = inputElement.value;
+}
+
+setTransactionDate(type: string) {
+    switch (type) {
+        case 'future':
+            this.dateFilters.futureDate = true;
+            this.dateFilters.pastDate = false;
+            break;
+        case 'past':
+            this.dateFilters.futureDate = false;
+            this.dateFilters.pastDate = true;
+            break;
+        case 'all':
+            this.dateFilters.futureDate = true;
+            this.dateFilters.pastDate = true;
+            break;
+        default:
+            break;
+    }
+}
+
 
   get uniqueCategories() {
     return [...new Set(this.expenses.map((transaction: any) => transaction.category))];
@@ -150,8 +177,5 @@ export class ExpensesComponent {
       }]
     };
   }
-  setSortOrder(event: Event) {
-    const inputElement = event.target as HTMLSelectElement;
-    this.filters.sortOrder = inputElement.value;
-  }
+
 }

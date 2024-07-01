@@ -20,9 +20,23 @@
                     <div class="row gy-2 overflow-hidden mt-4">
                         <div class="mt-5 col-12">
                             <h5>Date:</h5>
-                            <input class="form-check-input" type="checkbox" id="futureDate" (change)="setFutureDateFilter($event)">
-                            <label class="form-check-label" for="futureDate">&nbsp; Transazioni future</label>
-                            
+                            <div class="my-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="allTransactions"
+                                        name="transactionType" (change)="setTransactionDate('all')" checked>
+                                    <label class="form-check-label" for="allTransactions">Tutte le transazioni</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="futureTransactions"
+                                        name="transactionType" (change)="setTransactionDate('future')">
+                                    <label class="form-check-label" for="futureTransactions">Transazioni future</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="pastTransactions"
+                                        name="transactionType" (change)="setTransactionDate('past')">
+                                    <label class="form-check-label" for="pastTransactions">Transazioni passate</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating mb-3">

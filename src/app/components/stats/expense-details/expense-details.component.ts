@@ -22,7 +22,6 @@ export class ExpenseDetailsComponent {
       const id = +params['id'];
       this.transactionSrv.getExpenseById(id).subscribe((data) => {
         this.expense = data
-        console.log(this.expense)
       });
     })
 

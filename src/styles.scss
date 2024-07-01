@@ -6,35 +6,7 @@ body {
   color: #1F2C73 !important;
   font-family: "Inter", sans-serif;
   font-weight: 400 !important;
-}
-
-body.dark-theme,
-body.dark-theme .navbar{
-  background-color: #0d1333;
-  color: #ffffff !important;
-}
-
-body.dark-theme .rounded-2,
-body.dark-theme .container table tr td,
-body.dark-theme .container table tr th,
-body.dark-theme .card-body,
-body.dark-theme .container table tr td,
-body.dark-theme .container .list-group
-{
-  background-color: #161f52 !important;
-  color: #ffffff !important;
-  border-color:  #0d1333 !important;
-}
-
-body.dark-theme .table-bordered,
-body.dark-theme .container table tr th{
-  border-width: 0 !important;
-}
-
-
-
-body.dark-theme .text-body-tertiary{
-  color: #365ad3 !important;
+  min-height: 100vh;
 }
 
 h1,
@@ -45,28 +17,28 @@ h4 {
 }
 
 #logoName {
-  color: #122ca9;
+  color: #1F2C73;
 }
 
-.btn-outline-blu{
+.btn-outline-blu {
   border-color: #122ca9;
   color: #122ca9;
 }
 
 .btn-outline-blu:hover,
-.btn-outline-blu:active{
+.btn-outline-blu:active {
   background-color: #122ca9 !important;
   border-color: #122ca9 !important;
   color: white !important;
 }
 
-.btn-outline-blu-scuro{
+.btn-outline-blu-scuro {
   border-color: #0d1333;
   color: #0d1333;
 }
 
 .btn-outline-blu-scuro:hover,
-.btn-outline-blu-scuro:active{
+.btn-outline-blu-scuro:active {
   background-color: #0d1333;
   border-color: #0d1333;
   color: white;
@@ -267,33 +239,33 @@ h4 {
 }
 
 
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
   position: absolute;
   right: 0;
-  width: 8px;  
+  width: 8px;
 }
 
 ::-webkit-scrollbar:hover,
-::-webkit-scrollbar:active{
+::-webkit-scrollbar:active {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #122ba983;  
-  border-radius: 6px;  
+  background: #122ba983;
+  border-radius: 6px;
 }
 
-::-webkit-scrollbar-thumb:hover{
-  background: #122ba9cc; 
- 
+::-webkit-scrollbar-thumb:hover {
+  background: #122ba9cc;
+
 }
 
 ::-webkit-scrollbar-button {
-  display: none;  
+  display: none;
 }
 
 @-webkit-keyframes fade-in {
@@ -446,3 +418,87 @@ h4 {
   }
 
 }
+
+
+
+//tema scuro
+
+// .dark-theme {
+//   --bs-body-bg: #161F52; /* dark background color */
+//   --bs-body-color: #fff; /* light text color */
+//   --bs-primary: #666; /* dark primary color */
+//   --bs-secondary: #888; /* dark secondary color */
+//   --bs-success: #2ecc71; /* dark success color */
+//   --bs-info: #3498db; /* dark info color */
+//   --bs-warning: #f1c40f; /* dark warning color */
+//   --bs-danger: #e74c3c; /* dark danger color */
+// }
+
+// body.dark-theme,
+// body.dark-theme .navbar {
+//   background-color: #0d1333;
+//   color: #ffffff !important;
+// }
+
+
+// body.dark-theme .rounded-2,
+// body.dark-theme .container table tr td,
+// body.dark-theme .container table tr th,
+// body.dark-theme .card-body,
+// body.dark-theme .container table tr td,
+// body.dark-theme .container .list-group {
+//   background-color: #161f52 !important;
+//   color: #ffffff !important;
+//   border-color: #0d1333 !important;
+// }
+
+// body.dark-theme .table-bordered,
+// body.dark-theme .container table tr th {
+//   border-width: 0 !important;
+// }
+
+
+
+// body.dark-theme .text-body-tertiary {
+//   color: #365ad3 !important;
+// }
+
+
+// /* Add styles for the dark theme */
+// .dark-theme {
+//   background-color: #333;
+//   color: #fff;
+// }
+
+// /* Update component styles for dark theme */
+// .dark-theme.list-group-item {
+//   background-color: #2f4f7f; /* blue background */
+//   color: #fff; /* white text */
+//   border-color: #2f4f7f; /* blue border */
+// }
+
+// .dark-theme.list-group-item:hover {
+//   background-color: #1a3d6f; /* darker blue background on hover */
+// }
+
+// .dark-theme.btn {
+//   background-color: #2f4f7f; /* blue background */
+//   color: #fff; /* white text */
+//   border-color: #2f4f7f; /* blue border */
+// }
+
+// .dark-theme.btn:hover {
+//   background-color: #1a3d6f; /* darker blue background on hover */
+// }
+
+// .dark-theme.modal-content {
+//   background-color: #2f4f7f; /* blue background */
+//   color: #fff; /* white text */
+// }
+
+// .dark-theme.modal-header {
+//   background-color: #1a3d6f; /* darker blue background */
+//   color: #fff; /* white text */
+// }
+
+/* Update other component styles as needed */
