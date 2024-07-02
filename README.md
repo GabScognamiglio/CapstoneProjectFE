@@ -1,6 +1,9 @@
 # GS-Budgets
 
+Questo è il mio Capstone Project per il Bootcamp Epicode, classe FS0124A.
+Questa repo è relativa al Front-End dell'applicazione, puoi trovare il relativo Back-End, scritto in Java con Spring Boot a questo link: [**CapstoneProjectBE**](https://github.com/GabScognamiglio/CapstoneProject) 
 GS-Budgets è un'applicazione di gestione delle spese e delle entrate progettata per aiutarti a tenere traccia delle tue finanze personali in modo semplice ed efficace.
+
 
 ## Installazione e utilizzo
 
