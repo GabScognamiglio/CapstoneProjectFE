@@ -3,8 +3,8 @@
         <div class="container">
             <a class="nav-link fs-3 fw-bold fade-in logo-app" [routerLink]="['/home']" appChangeColorOnScroll>GS Budgets</a>
             <div class="d-flex justify-content-end align-items-center">
-                <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/login']">Login</a>
-                <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/signup']">Registrati</a>
+                <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/login']" appChangeColorOnScroll>Login</a>
+                <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/signup']" appChangeColorOnScroll>Registrati</a>
                 <!-- <button (click)="toggleTheme()">
                     {{ isDarkTheme() ? 'Switch to Light Theme' : 'Switch to Dark Theme' }}
                 </button> -->
