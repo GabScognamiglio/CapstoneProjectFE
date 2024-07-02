@@ -1,0 +1,63 @@
+
+
+<div *ngIf="!goal" class="text-body-tertiary text-center mt-5">
+    Seleziona un obiettivo per visualizzarne i dettagli.
+</div>
+
+<div class="card mb-3" *ngIf="goal">
+    <div class="row g-0">
+        <div class="col-md-5 col-lg-4 text-center">
+            <circle-progress class="w-100 d-none d-md-block" [percent]="progressPercentage" [radius]="100" [outerStrokeWidth]="16"
+                [innerStrokeWidth]="0" [outerStrokeColor]="'#122ca9'" [innerStrokeColor]="'#122ca9'"
+                [animationDuration]="600" [title]="progressPercentage.toString()" [subtitle]="'Progresso'"
+                [titleFontSize]="'32'" [subtitleFontSize]="'16'"></circle-progress>
+
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+            <div class="card-body testoBluScuro d-flex flex-column justify-content-between" style="min-height: 246px;">
+                <div>
+                    <h4 class="card-title mb-5">{{goal.name}}</h4>
+                    <div class="card-text">
+                        <div class="text-center mb-2 d-md-none">Progresso: <span class="fw-bold">{{progressPercentage}} %</span></div>
+                        <div class="progress d-md-none mb-5" role="progressbar" aria-label="Basic example" attr.aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" [style.width]="stringProgressPercentage+ '%'" [style.backgroundColor]="'#122ca9'"></div>
+                          </div>
+                        <div class="my-3">
+                            Obiettivo: <span class="fw-bold">{{goal.targetAmount | decimalTwoDigits}}€</span>
+                        </div>
+                        <div class="my-3">
+                            Risparmiati: <span class="fw-bold">{{goal.savedAmount | decimalTwoDigits}}€</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="card-text align-self-end"><small class="text-body-secondary">Obiettivo creato in data: {{goal.creationDate |
+                        date: 'dd/MM/yyyy'}}</small>
+                </p>
+            </div>
+
+            
+        </div>
+        <div class="col text-center my-4 testoBluScuro">
+            
+        </div>
+        <div class="container mt-4">
+            <h5 class="testoBluScuro text-center">Tutte le volte che hai risparmiato per l'obiettivo</h5>
+            <table class="table table-bordered table-hover testoBluScuro">
+                <thead>
+                    <tr>
+                        <th class="testoBluScuro">Data</th>
+                        <th class="testoBluScuro">Ammontare</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let transaction of goalExpenses"
+                        [routerLink]="['/expense-details', transaction.id]">
+                        <td class="testoBluScuro">{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                        <td class="testoBluScuro">{{ transaction.amount | decimalTwoDigits}}€</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

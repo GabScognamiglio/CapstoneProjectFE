@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <h3>Statistiche</h3>
+    <p class="text-body-tertiary">Tutti i numeri di cui hai bisogno.</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col col-md-2 text-center">
+            <a [routerLink]="['/stats/expenses']" routerLinkActive="testoBluScuro" class="nav-link text-body-tertiary fw-bold">Spese</a>
+        </div>
+        <div class="col col-md-2 text-center">
+            <a [routerLink]="['/stats/incomes']" routerLinkActive="testoBluScuro" class="nav-link text-body-tertiary fw-bold">Entrate</a>
+        </div>
+        <div class="col col-md-2 text-center">
+            <a [routerLink]="['/stats/expenses-vs-incomes']" routerLinkActive="testoBluScuro" class="nav-link text-body-tertiary fw-bold">Spese vs Entrate</a>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

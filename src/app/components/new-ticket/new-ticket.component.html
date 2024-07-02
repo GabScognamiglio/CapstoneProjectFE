@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="mb-5">
+        <h3>Nuovo Ticket di assistenza</h3>
+        <p class="text-body-tertiary">Descrivi il tuo problema, uno dei nostri amministratori ti risponderà al più presto.</p>
+    </div>
+
+    <div class="container bg-white rounded-2 p-4 mb-5 shadow">
+        <h4 class="text-center">Compila il form</h4>
+        <form #newTicketForm="ngForm" (ngSubmit)="createTicket(newTicketForm)">
+            <input type="text" class="form-control my-2" id="object" name="object" placeholder="Titolo del ticket" required ngModel>
+            <textarea class="form-control my-2" id="description" name="description" placeholder="Descrizione del problema..." rows="8" required ngModel></textarea>
+
+            <div class="d-flex justify-content-center">
+                <button class="btn w-50 bottone align-self-end" [disabled]="newTicketForm.invalid">Invia</button>
+            </div>
+            
+        </form>
+
+    </div>
+</div>
