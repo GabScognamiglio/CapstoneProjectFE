@@ -1,0 +1,167 @@
+<div class="container mt-5">
+    <h2>Dashboard</h2>
+    <p class="text-body-tertiary">Uno sguardo alle tue economie.</p>
+</div>
+
+<div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 60vh;">
+    <span class="loader"></span>
+</div>
+<router-outlet></router-outlet>
+<div class="container my-5 testoBluScuro" *ngIf="!caricamento">
+    <div class="container rounded-2 bg-white mb-5 p-4 shadow border-0">
+        <div class="mb-2">
+            <h4 class="mb-0 text-center">Aggiungi transazione</h4>
+        </div>
+        <div class="row text-center">
+            <div class="col-12 col-md-6"><button class="btn btn-lg btn-outline-blu w-75 p-3 my-3"
+                    [routerLink]="['/home/new-income']">
+                    <span class="material-symbols-outlined me-2">
+                        trending_up
+                    </span>Entrata
+                </button>
+            </div>
+            <div class="col-12 col-md-6">
+                <button class="btn btn-lg btn-outline-blu-scuro w-75 p-3 my-3" [routerLink]="['/home/new-expense']">
+                    <span class="material-symbols-outlined me-2">
+                        trending_down
+                    </span>Uscita
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined me-2">
+                            account_balance
+                        </span>
+                        <p>Bilancio Totale</p>
+                    </div>
+                    <h3 class="card-title">{{totalBalance.balance | decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined text-success me-2">
+                            trending_up
+                        </span>
+                        <p>Entrate Totali</p>
+                    </div>
+                    <h3 class="card-title">{{totalBalance.totalIncome | decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+            <div class="card rounded-2 bg-white mb-md-5 mb-3 shadow border-0">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <span class="material-symbols-outlined text-danger me-2">
+                            trending_down
+                        </span>
+                        <p>Uscite Totali</p>
+                    </div>
+                    <h3 class="card-title">{{totalBalance.totalExpense | decimalTwoDigits}} €</h3>
+                    <p class="card-text text-body-tertiary"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container rounded-2 bg-white mb-5 p-4 shadow border-0" *ngIf="!caricamento">
+        <div class="mb-5">
+            <h4 class="mb-3">Andamento mensile ultimo anno</h4>
+            <p class="text-body-tertiary">Il grafico mostra la differenza tra entrate e uscite di ogni mese nell'ultimo
+                anno</p>
+        </div>
+        <div echarts [options]="chartOptionYear" class="chart"></div>
+    </div>
+
+    <div class="container rounded-2 bg-white mb-5 p-4 shadow border-0" *ngIf="!caricamento">
+        <div class="mb-5">
+            <h4 class="mb-3">Andamento settimanale ultimo mese</h4>
+            <p class="text-body-tertiary">Il grafico mostra la differenza tra entrate e uscite di ogni settimana
+                nell'ultimo mese</p>
+        </div>
+        <div echarts [options]="chartOptionMonth" class="chart"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 col-xxl-6">
+            <div class="container rounded-2 bg-white mb-5 p-4 shadow border-0">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="mb-0">Ultime entrate</h4>
+                </div>
+                <div class="container mt-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Data</th>
+                                <th>Tag</th>
+                                <th>Ammontare</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let transaction of recentInc">
+                                <td>
+                                    <div class="category-icon" [ngClass]="getCategoryClass(transaction.category)"></div>
+                                    {{ transaction.category }}
+                                </td>
+                                <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                                <td>{{ transaction.tag }}</td>
+                                <td>{{ transaction.amount | decimalTwoDigits}}€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-xxl-6">
+            <div class="container rounded-2 bg-white mb-5 p-4 shadow border-0">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="mb-0">Ultime uscite</h4>
+                </div>
+                <!-- <ul *ngIf="!caricamento">
+                    <li *ngFor="let expense of recentExp">{{expense.category}} - {{expense.amount}}€ - {{expense.date}}</li>
+                </ul> -->
+                <div class="container mt-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Data</th>
+                                <th>Tag</th>
+                                <th>Ammontare</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let transaction of recentExp">
+                                <td>
+                                    <div class="category-icon" [ngClass]="getCategoryClass(transaction.category)"></div>
+                                    <span *ngIf="transaction.category != 'ATTIVITA_FISICA'">{{ transaction.category }}</span>
+                                    <span *ngIf="transaction.category == 'ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
+                                </td>
+                                <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                                <td>{{ transaction.tag }}</td>
+                                <td>{{ transaction.amount | decimalTwoDigits}}€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

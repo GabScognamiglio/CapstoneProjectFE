@@ -1,0 +1,504 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin-left: 80px;
+  background-color: #F5F8FB;
+  color: #1F2C73 !important;
+  font-family: "Inter", sans-serif;
+  font-weight: 400 !important;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+#logoName {
+  color: #1F2C73;
+}
+
+.btn-outline-blu {
+  border-color: #122ca9;
+  color: #122ca9;
+}
+
+.btn-outline-blu:hover,
+.btn-outline-blu:active {
+  background-color: #122ca9 !important;
+  border-color: #122ca9 !important;
+  color: white !important;
+}
+
+.btn-outline-blu-scuro {
+  border-color: #0d1333;
+  color: #0d1333;
+}
+
+.btn-outline-blu-scuro:hover,
+.btn-outline-blu-scuro:active {
+  background-color: #0d1333;
+  border-color: #0d1333;
+  color: white;
+}
+
+.testoBluScuro {
+  color: #1F2C73 !important;
+}
+
+#authBtn,
+.bottone {
+  background-color: #122ca9;
+  color: white;
+}
+
+#authBtn:hover,
+.bottone:hover {
+  color: white;
+  background-color: #1391c1;
+}
+
+.toast-conferma {
+  max-width: 420px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-weight: 600;
+}
+
+.toast-success {
+  background-color: #122ca9 !important;
+  color: white;
+  padding: 25px;
+  border-radius: 8px;
+  font-size: large;
+}
+
+.toast-error {
+  background-color: #6b1b17 !important;
+  color: white;
+  padding: 25px;
+  border-radius: 8px;
+  font-size: large;
+}
+
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: #FFF #FFF transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after,
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent #122ca9 #122ca9;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: #1F2C73 #1F2C73 transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.badge,
+.table-hover {
+  cursor: pointer;
+}
+
+
+.category-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+// Stili per le spese
+.category-spesa {
+  background-color: #f8c291;
+}
+
+.category-salute {
+  background-color: #eb2f06;
+}
+
+.category-svago {
+  background-color: #6a89cc;
+}
+
+.category-ristoranti {
+  background-color: #4a69bd;
+}
+
+.category-istruzione {
+  background-color: #78e08f;
+}
+
+.category-regali {
+  background-color: #fa983a;
+}
+
+.category-famiglia {
+  background-color: #e58e26;
+}
+
+.category-attivita-fisica {
+  background-color: #38ada9;
+}
+
+.category-trasporti {
+  background-color: #b71540;
+}
+
+.category-abbonamenti {
+  background-color: #6a89cc;
+}
+
+.category-auto {
+  background-color: #0c2461;
+}
+
+.category-obiettivi {
+  background-color: #f6b93b;
+}
+
+.category-altro {
+  background-color: #60a3bc;
+}
+
+// Stili per le entrate
+.category-stipendio {
+  background-color: #78e08f;
+}
+
+.category-regalo {
+  background-color: #fa983a;
+}
+
+.category-vincita {
+  background-color: #38ada9;
+}
+
+.category-interessi {
+  background-color: #6a89cc;
+}
+
+.bounce-in-top {
+  -webkit-animation: bounce-in-top 1.1s both;
+  animation: bounce-in-top 1.1s both
+}
+
+.fade-in {
+  -webkit-animation: fade-in 1.2s cubic-bezier(.39, .575, .565, 1.000) both;
+  animation: fade-in 1.2s cubic-bezier(.39, .575, .565, 1.000) both
+}
+
+
+::-webkit-scrollbar {
+  position: absolute;
+  right: 0;
+  width: 8px;
+}
+
+::-webkit-scrollbar:hover,
+::-webkit-scrollbar:active {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #122ba983;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #122ba9cc;
+
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
+}
+
+
+
+@-webkit-keyframes bounce-in-top {
+  0% {
+    -webkit-transform: translateY(-500px);
+    transform: translateY(-500px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  38% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+
+  55% {
+    -webkit-transform: translateY(-65px);
+    transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  72% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  81% {
+    -webkit-transform: translateY(-28px);
+    transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  90% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  95% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes bounce-in-top {
+  0% {
+    -webkit-transform: translateY(-500px);
+    transform: translateY(-500px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  38% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+
+  55% {
+    -webkit-transform: translateY(-65px);
+    transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  72% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  81% {
+    -webkit-transform: translateY(-28px);
+    transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  90% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  95% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  body {
+    margin: 0px;
+  }
+
+}
+
+
+
+//tema scuro
+
+// .dark-theme {
+//   --bs-body-bg: #161F52; /* dark background color */
+//   --bs-body-color: #fff; /* light text color */
+//   --bs-primary: #666; /* dark primary color */
+//   --bs-secondary: #888; /* dark secondary color */
+//   --bs-success: #2ecc71; /* dark success color */
+//   --bs-info: #3498db; /* dark info color */
+//   --bs-warning: #f1c40f; /* dark warning color */
+//   --bs-danger: #e74c3c; /* dark danger color */
+// }
+
+// body.dark-theme,
+// body.dark-theme .navbar {
+//   background-color: #0d1333;
+//   color: #ffffff !important;
+// }
+
+
+// body.dark-theme .rounded-2,
+// body.dark-theme .container table tr td,
+// body.dark-theme .container table tr th,
+// body.dark-theme .card-body,
+// body.dark-theme .container table tr td,
+// body.dark-theme .container .list-group {
+//   background-color: #161f52 !important;
+//   color: #ffffff !important;
+//   border-color: #0d1333 !important;
+// }
+
+// body.dark-theme .table-bordered,
+// body.dark-theme .container table tr th {
+//   border-width: 0 !important;
+// }
+
+
+
+// body.dark-theme .text-body-tertiary {
+//   color: #365ad3 !important;
+// }
+
+
+// /* Add styles for the dark theme */
+// .dark-theme {
+//   background-color: #333;
+//   color: #fff;
+// }
+
+// /* Update component styles for dark theme */
+// .dark-theme.list-group-item {
+//   background-color: #2f4f7f; /* blue background */
+//   color: #fff; /* white text */
+//   border-color: #2f4f7f; /* blue border */
+// }
+
+// .dark-theme.list-group-item:hover {
+//   background-color: #1a3d6f; /* darker blue background on hover */
+// }
+
+// .dark-theme.btn {
+//   background-color: #2f4f7f; /* blue background */
+//   color: #fff; /* white text */
+//   border-color: #2f4f7f; /* blue border */
+// }
+
+// .dark-theme.btn:hover {
+//   background-color: #1a3d6f; /* darker blue background on hover */
+// }
+
+// .dark-theme.modal-content {
+//   background-color: #2f4f7f; /* blue background */
+//   color: #fff; /* white text */
+// }
+
+// .dark-theme.modal-header {
+//   background-color: #1a3d6f; /* darker blue background */
+//   color: #fff; /* white text */
+// }
+
+/* Update other component styles as needed */

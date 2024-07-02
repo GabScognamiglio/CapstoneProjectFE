@@ -1,0 +1,129 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <div class="container bg-white rounded-2 p-4 my-5 shadow">
+                <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+                    <span class="loader"></span>
+                </div>
+                <div *ngIf="!caricamento" class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                        <h4 class="mb-0">Filtri</h4>
+                    </div>
+                    <div>
+                        <h5>Categorie:</h5>
+                        <span class="badge p-3 m-2" *ngFor="let category of uniqueCategories"
+                            [ngClass]="getCategoryClass(category)" (click)="setCategoryFilter(category)">
+                            {{ category }}
+                        </span>
+                        <span class="badge bg-secondary p-3 m-2" (click)="setCategoryFilter('')">Tutti</span>
+                    </div>
+                    <div class="row gy-2 overflow-hidden mt-4">
+                        <div class="mt-5 col-12">
+                            <h5>Date:</h5>
+                            <div class="my-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="allTransactions"
+                                        name="transactionType" (change)="setTransactionDate('all')" checked>
+                                    <label class="form-check-label" for="allTransactions">Tutte le transazioni</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="futureTransactions"
+                                        name="transactionType" (change)="setTransactionDate('future')">
+                                    <label class="form-check-label" for="futureTransactions">Transazioni future</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="pastTransactions"
+                                        name="transactionType" (change)="setTransactionDate('past')">
+                                    <label class="form-check-label" for="pastTransactions">Transazioni passate</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="sortOrder" (change)="setSortOrder($event)">
+                                    <option value="asc">Dal meno recente</option>
+                                    <option value="desc" selected>Dal più recente</option>
+                                </select>
+                                <label for="sortOrder" class="form-label">Ordine</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" name="date" id="date"
+                                    [(ngModel)]="filters.date">
+                                <label for="date" class="form-label">Data</label>
+                            </div>
+                        </div>
+                        <h5 class="mt-5">Ammontare:</h5>
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="ammontareMin" id="ammontareMin"
+                                    [(ngModel)]="filters.minAmount">
+                                <label for="ammontareMin" class="form-label">Ammontare minimo</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-12">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" name="ammontaremax" id="ammontaremax"
+                                    [(ngModel)]="filters.maxAmount">
+                                <label for="ammontaremax" class="form-label">Ammontare massimo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!caricamento" class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="mb-0">Percentuali per categoria</h4>
+                </div>
+                <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+                    <span class="loader"></span>
+                </div>
+                <div *ngIf="!caricamento">
+                    <div echarts [options]="options" class="chart"></div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-12 col-lg-8">
+            <div class="container bg-white rounded-2 p-4 my-5 shadow">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h4 class="mb-0">Le tue entrate</h4>
+                </div>
+                <div *ngIf="caricamento" class="d-flex align-items-center justify-content-center" style="height: 30vh;">
+                    <span class="loader"></span>
+                </div>
+                <div *ngIf="!caricamento" class="container">
+                    <div>
+                        <div class="container mt-4">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Data</th>
+                                        <th class="d-none d-md-block">Tag</th>
+                                        <th>Ammontare</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let transaction of filteredTransactions"
+                                        [routerLink]="['/income-details', transaction.id]">
+                                        <td>
+                                            <div class="category-icon"
+                                                [ngClass]="getCategoryClass(transaction.category)">
+                                            </div>
+                                            {{ transaction.category }}
+                                        </td>
+                                        <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
+                                        <td class="d-none d-md-block">{{ transaction.tag }}</td>
+                                        <td>{{ transaction.amount | decimalTwoDigits}}€</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

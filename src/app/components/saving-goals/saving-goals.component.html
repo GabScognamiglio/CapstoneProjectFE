@@ -1,0 +1,125 @@
+<div class="container mt-5">
+    <div class="mb-5">
+        <h3>Obiettivi di risparmio</h3>
+        <p class="text-body-tertiary">Risparmia per ciò che sogni.</p>
+    </div>
+</div>
+<router-outlet class="slide-top"></router-outlet>
+<div class="container bg-white rounded-2 p-4 mb-5 shadow">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h4 class="mb-0">I tuoi obiettivi</h4>
+
+        <div class="d-flex align-items-center justify-content-center">
+            Nuovo
+            <button class="btn bottone rounded-circle ms-2" [routerLink]="['/saving-goals/new-goal']"
+                style="width: 46px; height: 46px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" fill="currentColor" class="bi bi-plus-lg"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 col-md-4">
+            <div class="ms-3 my-3 d-flex">
+                <h5>Lista</h5>
+            </div>
+            <div class="list-group">
+                <button *ngFor="let goal of goals" class="list-group-item list-group-item-action testoBluScuro"
+                    (click)="selectGoal(goal)">
+                    <h5 class="mb-1">{{ goal.name }}</h5>
+                    <p class="mb-1 text-body-tertiary">{{ goal.savedAmount | decimalTwoDigits }} / {{ goal.targetAmount
+                        | decimalTwoDigits }}€</p>
+                </button>
+            </div>
+        </div>
+        <div class="col-6 col-md-8">
+            <div class="ms-3 my-3 d-flex justify-content-between align-items-center">
+                <h5>Dettagli</h5>
+                <div *ngIf="selectedGoal" class="d-flex align-items-center justify-content-center">
+                    
+                    <button class="btn bottone rounded-circle ms-2 d-flex justify-content-center align-items-center"
+                        style="width: 36px; height: 36px;" routerLinkActive="router-link-active" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#exampleModal'+selectedGoal.id">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </button>&nbsp;
+        
+                    
+                    <button class="btn btn-outline-danger rounded-circle ms-2 d-flex justify-content-center align-items-center"
+                        style="width: 36px; height: 36px;" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#exampleModal'+selectedGoal.id+'A'+selectedGoal.id" >
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <app-goal-details [goal]="selectedGoal"></app-goal-details>
+        </div>
+    </div>
+
+
+    <div *ngIf="goals.length==0">
+        Non hai ancora obiettivi.
+    </div>
+</div>
+
+
+<!--Modale Elimina-->
+<div *ngIf="selectedGoal" class="modal fade" id="exampleModal{{selectedGoal.id}}A{{selectedGoal.id}}" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content full-width-modal">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Elimina Obiettivo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>ID saving goal: {{selectedGoal.id}}</p>
+            <strong>Sei sicuro di voler eliminare questo obiettivo di risparmio?</strong>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteGoal(selectedGoal.id)">Elimina</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Modale Modifica-->
+<div *ngIf="selectedGoal" class="modal fade" id="exampleModal{{selectedGoal.id}}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content full-width-modal">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modifica Obiettivo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="form" class="form" #modObiettivo="ngForm" >
+                <div class="row gy-2 overflow-hidden">
+                    <div class="col-12 col-lg-3"></div>
+                    <div class="col-12 col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" name="newSavedAmount" id="newSavedAmount" required [ngModel]="selectedGoal.savedAmount" [min]="selectedGoal.savedAmount" [max]="selectedGoal.targetAmount">
+                            <label for="newSavedAmount" class="form-label">Nuova quantità risparmiata
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="form-floating mb-3 text-center">
+                            <button type="submit" class="btn py-2 bottone w-50" (click)="modificaGoal(selectedGoal.id, modObiettivo)" [disabled]="modObiettivo.invalid">Modifica</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
