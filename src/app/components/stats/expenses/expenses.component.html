@@ -13,7 +13,8 @@
                         <h5>Categorie:</h5>
                         <span class="badge p-2 m-2" *ngFor="let category of uniqueCategories"
                             [ngClass]="getCategoryClass(category)" (click)="setCategoryFilter(category)">
-                            {{ category }}
+                            <span *ngIf="category=='ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
+                            <span *ngIf="category!='ATTIVITA_FISICA'">{{category}}</span>
                         </span>
                         <span class="badge bg-secondary p-2 m-2" (click)="setCategoryFilter('')">Tutti</span>
                     </div>
@@ -110,8 +111,8 @@
                                         <td>
                                             <div class="category-icon"
                                                 [ngClass]="getCategoryClass(transaction.category)">
-                                            </div>
-                                            {{ transaction.category }}
+                                            </div><span *ngIf="transaction.category=='ATTIVITA_FISICA'">ATTIVITA' FISICA</span>
+                                            <span *ngIf="transaction.category!='ATTIVITA_FISICA'">{{transaction.category}}</span>
                                         </td>
                                         <td>{{ transaction.date | date: 'dd/MM/yyyy' }}</td>
                                         <td class="d-none d-md-block">{{ transaction.tag }}</td>
