@@ -1,26 +1,25 @@
-<div class="container-fluid px-0 sticky-top" >
+<div class="container-fluid px-0 sticky-top">
     <nav class="navbar navbar-expand-lg p-0 shadow" appChangeColorOnScroll>
         <div class="container">
-            <a class="nav-link fs-3 fw-bold fade-in logo-app" [routerLink]="['/home']" appChangeColorOnScroll>GS Budgets</a>
+            <a class="nav-link fs-3 fw-bold fade-in logo-app" [routerLink]="['/home']" appChangeColorOnScroll>
+                <span style="font-weight: 700;" appChangeColorOnScroll class="gs-logo">GS</span>
+                Budgets &nbsp;
+            </a>
             <div class="d-flex justify-content-end align-items-center">
                 <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/login']" appChangeColorOnScroll>Login</a>
                 <a *ngIf="!user" class="nav-link mx-3" [routerLink]="['/signup']" appChangeColorOnScroll>Registrati</a>
-                <!-- <button (click)="toggleTheme()">
-                    {{ isDarkTheme() ? 'Switch to Light Theme' : 'Switch to Dark Theme' }}
-                </button> -->
                 <div *ngIf="user" class="dropdown" style="height: 38px; width: 38px;">
-
                     <a data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="material-symbols-outlined user-logo" style="font-size: 38px;" appChangeColorOnScroll>
+                        <span class="material-symbols-outlined user-logo" style="font-size: 38px;"
+                            appChangeColorOnScroll>
                             account_circle
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item d-flex align-items-center"
-                            [routerLink]="['/home']"><span class="material-symbols-outlined"
-                                style="font-size: 28px;">
-                               home
-                            </span>&nbsp;Home</a></li>
+                        <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/home']"><span
+                                    class="material-symbols-outlined" style="font-size: 28px;">
+                                    home
+                                </span>&nbsp;Home</a></li>
                         <li><a class="dropdown-item d-flex align-items-center"
                                 [routerLink]="['/profile-settings/details']"><span class="material-symbols-outlined"
                                     style="font-size: 28px;">

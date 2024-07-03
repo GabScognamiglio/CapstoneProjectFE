@@ -12,6 +12,15 @@
     transition: all 0.5s;
 }
 
+.gs-logo.scrolled{
+    transition: all 2.5s;
+}
+
+.logo-app{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400 !important;
+}
+
 .navbar.scrolled{
     background-color: #1F2C73;
     color: white !important;
@@ -20,9 +29,11 @@
 
 .logo-app.scrolled,
 .user-logo.scrolled,
-.nav-link.scrolled{
+.nav-link.scrolled,
+span.scrolled{
     color: white !important;
 }
+
 
 .navbar * {
     color: #1F2C73 ;
@@ -88,7 +99,3 @@ a{
         margin-left: 0;
     }
 }
-
-
-
-

@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 body {
   margin-left: 80px;
   background-color: #F5F8FB;
@@ -18,6 +16,8 @@ h4 {
 
 #logoName {
   color: #1F2C73;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400 !important;
 }
 
 .btn-outline-blu {
@@ -84,7 +84,7 @@ h4 {
   font-size: large;
 }
 
-.obiettivi{
+.obiettivi {
   margin-bottom: 100px !important;
 }
 
@@ -421,87 +421,3 @@ h4 {
   }
 
 }
-
-
-
-//tema scuro
-
-// .dark-theme {
-//   --bs-body-bg: #161F52; /* dark background color */
-//   --bs-body-color: #fff; /* light text color */
-//   --bs-primary: #666; /* dark primary color */
-//   --bs-secondary: #888; /* dark secondary color */
-//   --bs-success: #2ecc71; /* dark success color */
-//   --bs-info: #3498db; /* dark info color */
-//   --bs-warning: #f1c40f; /* dark warning color */
-//   --bs-danger: #e74c3c; /* dark danger color */
-// }
-
-// body.dark-theme,
-// body.dark-theme .navbar {
-//   background-color: #0d1333;
-//   color: #ffffff !important;
-// }
-
-
-// body.dark-theme .rounded-2,
-// body.dark-theme .container table tr td,
-// body.dark-theme .container table tr th,
-// body.dark-theme .card-body,
-// body.dark-theme .container table tr td,
-// body.dark-theme .container .list-group {
-//   background-color: #161f52 !important;
-//   color: #ffffff !important;
-//   border-color: #0d1333 !important;
-// }
-
-// body.dark-theme .table-bordered,
-// body.dark-theme .container table tr th {
-//   border-width: 0 !important;
-// }
-
-
-
-// body.dark-theme .text-body-tertiary {
-//   color: #365ad3 !important;
-// }
-
-
-// /* Add styles for the dark theme */
-// .dark-theme {
-//   background-color: #333;
-//   color: #fff;
-// }
-
-// /* Update component styles for dark theme */
-// .dark-theme.list-group-item {
-//   background-color: #2f4f7f; /* blue background */
-//   color: #fff; /* white text */
-//   border-color: #2f4f7f; /* blue border */
-// }
-
-// .dark-theme.list-group-item:hover {
-//   background-color: #1a3d6f; /* darker blue background on hover */
-// }
-
-// .dark-theme.btn {
-//   background-color: #2f4f7f; /* blue background */
-//   color: #fff; /* white text */
-//   border-color: #2f4f7f; /* blue border */
-// }
-
-// .dark-theme.btn:hover {
-//   background-color: #1a3d6f; /* darker blue background on hover */
-// }
-
-// .dark-theme.modal-content {
-//   background-color: #2f4f7f; /* blue background */
-//   color: #fff; /* white text */
-// }
-
-// .dark-theme.modal-header {
-//   background-color: #1a3d6f; /* darker blue background */
-//   color: #fff; /* white text */
-// }
-
-/* Update other component styles as needed */
