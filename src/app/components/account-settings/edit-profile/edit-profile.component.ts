@@ -43,7 +43,7 @@ export class EditProfileComponent {
           this.user.user.dateOfBirth = userMod.dateOfBirth;
           this.user.user.phoneNumber = userMod.phoneNumber;
         }
-        this.toastr.success('Dati utente modificati correttamente'); this.router.navigate(['/account-settings/details']);
+        this.toastr.success('Dati utente modificati correttamente'); this.router.navigate(['/profile-settings/details']);
       },
       error: (error) => {
         console.error(error);
