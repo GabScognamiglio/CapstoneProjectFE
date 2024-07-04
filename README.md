@@ -1,5 +1,7 @@
 # GS-Budgets
 
+Puoi trovare la versione pubblicata dell'app al seguente link: [**https://gs-budgets.netlify.app**](https://gs-budgets.netlify.app/) 
+
 Questo è il mio Capstone Project per il Bootcamp Epicode, classe FS0124A.
 
 Questa repo è relativa al Front-End dell'applicazione, puoi trovare il relativo Back-End, scritto in Java con Spring Boot a questo link: [**CapstoneProjectBE**](https://github.com/GabScognamiglio/CapstoneProject) 
